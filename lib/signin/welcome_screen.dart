@@ -1,5 +1,5 @@
-import 'package:finsem_client/dashboard/dashboard.dart';
 import 'package:finsem_client/signin/gsign.dart';
+import 'package:finsem_client/ui/screens/dashboard/dashboard_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -21,7 +21,7 @@ class WelcomeScreen extends StatelessWidget {
           );
         }
         if (snapshot.data != null) {
-          return const Dashboard();
+          return const DashboardScreen();
         } else {
           return Scaffold(
             body: Column(
