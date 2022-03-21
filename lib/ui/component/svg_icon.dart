@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 class SvgIcon extends StatelessWidget {
-  SvgIcon({
+  const SvgIcon({
     required this.assetPath,
     required this.size,
     this.onPressed,
     required this.color,
-  });
+    Key? key,
+  }) : super(key: key);
 
   final String assetPath;
   final double size;
@@ -20,7 +21,7 @@ class SvgIcon extends StatelessWidget {
       width: size,
       height: size,
       child: InkWell(
-        onTap: this.onPressed,
+        onTap: onPressed,
         child: SvgPicture.asset(
           assetPath,
           color: Color(color),

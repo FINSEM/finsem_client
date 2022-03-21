@@ -1,112 +1,211 @@
+import 'package:finsem_client/controller/signin/gsign.dart';
 import 'package:finsem_client/ui/component/svg_icon.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
+import 'package:finsem_client/ui/component/dashboard_options.dart';
+import 'package:google_fonts/google_fonts.dart';
 
-class DashboardScreen extends StatelessWidget {
+class DashboardScreen extends StatefulWidget {
   const DashboardScreen({Key? key}) : super(key: key);
 
   @override
+  State<DashboardScreen> createState() => _DashboardScreenState();
+}
+
+class _DashboardScreenState extends State<DashboardScreen> {
+  double _height = 60.h;
+  double _radius = 0;
+  bool _expanded = false;
+  bool _visible = false;
+  void expand() {
+    setState(() {
+      _expanded = !_expanded;
+      _expanded ? _height = 750.h : _height = 60.h;
+      _expanded ? _radius = 30.h : _radius = 0.h;
+      Future.delayed(const Duration(milliseconds: 500)).then((value) {
+        setState(() {
+          _visible = !_visible;
+        });
+      });
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Color(0xffffffff),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Container(
-            color: Color(0xffffffff),
-            height: 130.h,
-            child: Stack(
-              children: [
-                Container(
-                  height: 83.h,
-                  color: Color(0xff483c94),
+    return AnnotatedRegion<SystemUiOverlayStyle>(
+      value: const SystemUiOverlayStyle(
+        statusBarColor: Color(0xff483c94),
+      ),
+      child: SafeArea(
+        child: Scaffold(
+          backgroundColor: Colors.white,
+          body: Stack(
+            children: [
+              Container(
+                margin: EdgeInsets.only(top: 50.h, left: 50.h),
+                color: const Color(0xff483c94),
+                width: 300.h,
+                height: 60.h,
+              ),
+              Container(
+                margin: EdgeInsets.only(top: 60.h),
+                width: 360.w,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.only(
+                    topRight: Radius.circular(30.h),
+                  ),
                 ),
-                Column(
+                child: Column(
+                  children: const [],
+                ),
+              ),
+              AnimatedContainer(
+                padding: _visible
+                    ? EdgeInsets.only(right: 20.w, left: 20.w, top: 20.h)
+                    : EdgeInsets.symmetric(vertical: 10.h, horizontal: 20.w),
+                height: _height,
+                width: 360.w,
+                decoration: BoxDecoration(
+                  color: const Color(0xff483c94),
+                  borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(30.h),
+                    bottomRight: Radius.circular(_radius),
+                  ),
+                ),
+                duration: const Duration(seconds: 1),
+                curve: Curves.linearToEaseOut,
+                child: Column(
                   children: [
-                    Container(
-                      // decoration: const BoxDecoration(
-                      //   color: Color(0xff483c94),
-                      //   borderRadius:
-                      //       BorderRadius.only(bottomLeft: Radius.circular(40.0)),
-                      // ),
-                      color: Color(0xff483c94),
-                      height: 80.h,
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Container(
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.end,
-                              children: [
-                                Row(
-                                  children: [
-                                    const SizedBox(
-                                      width: 15,
-                                    ),
-                                    SvgIcon(
-                                      color: 0xffffffff,
-                                      assetPath: "assets/icon/menu-dots.svg",
-                                      size: 37,
-                                      //onPressed: ,
-                                    ),
-                                    const SizedBox(
-                                      width: 20,
-                                    ),
-                                  ],
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            SvgIcon(
+                              color: 0xffffffff,
+                              assetPath: "assets/icon/menu-dots.svg",
+                              size: 25,
+                              onPressed: expand,
+                            ),
+                            SizedBox(width: 20.w),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: const [
+                                Text(
+                                  "Dhiraj Gupta",
+                                  style: TextStyle(
+                                      fontSize: 18, color: Colors.white),
                                 ),
-                                Column(
-                                  mainAxisAlignment: MainAxisAlignment.end,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: const [
-                                    Text(
-                                      "Dhiraj Gupta",
-                                      style: TextStyle(
-                                          fontSize: 18, color: Colors.white),
-                                    ),
-                                    Text(
-                                      "Tower1  1304",
-                                      style: TextStyle(
-                                          fontSize: 13, color: Colors.white),
-                                    )
-                                  ],
-                                ),
+                                Text(
+                                  "Tower1  1304",
+                                  style: TextStyle(
+                                      fontSize: 13, color: Colors.white),
+                                )
                               ],
                             ),
-                          ),
-
-                          //display user name in dashboard
-
-                          Row(
-                            children: [
-                              CircleAvatar(
-                                radius: 20, // Image radius
-                                backgroundImage:
-                                    AssetImage("assets/images/profile_pic.jpg"),
-                              ),
-                              SizedBox(
-                                width: 15,
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
+                          ],
+                        ),
+                        const CircleAvatar(
+                          radius: 20, // Image radius
+                          backgroundImage:
+                              AssetImage("assets/images/profile_pic.jpg"),
+                        ),
+                      ],
                     ),
-                    ClipPath(
-                      clipper: WaveClipperTwo(),
-                      child: Container(
-                        height: 50.h,
-                        color: Color(0xff483c94),
-                      ),
-                    ),
+                    Visibility(
+                      visible: _visible,
+                      child: _height == 750.h
+                          ? Container(
+                              margin: EdgeInsets.symmetric(vertical: 30.h),
+                              child: Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      DashboardOptions(
+                                        title: 'Dashboard',
+                                        asset: "assets/images/profile_pic.jpg",
+                                        onPressed: () {},
+                                      ),
+                                      DashboardOptions(
+                                        title: 'Notice',
+                                        asset: "assets/images/profile_pic.jpg",
+                                        onPressed: () {},
+                                      ),
+                                      DashboardOptions(
+                                        title: 'Payments',
+                                        asset: "assets/images/profile_pic.jpg",
+                                        onPressed: () {},
+                                      ),
+                                    ],
+                                  ),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: const [
+                                      DashboardOptions(
+                                          title: 'Fee Details',
+                                          asset:
+                                              "assets/images/profile_pic.jpg"),
+                                      DashboardOptions(
+                                          title: 'Examination',
+                                          asset:
+                                              "assets/images/profile_pic.jpg"),
+                                      DashboardOptions(
+                                          title: 'Report Card',
+                                          asset:
+                                              "assets/images/profile_pic.jpg"),
+                                    ],
+                                  ),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: const [
+                                      DashboardOptions(
+                                          title: 'Calendar',
+                                          asset:
+                                              "assets/images/profile_pic.jpg"),
+                                      DashboardOptions(
+                                          title: 'Multimedia',
+                                          asset:
+                                              "assets/images/profile_pic.jpg"),
+                                      DashboardOptions(
+                                          title: 'Payments',
+                                          asset:
+                                              "assets/images/profile_pic.jpg"),
+                                    ],
+                                  ),
+                                  TextButton(
+                                    onPressed: () {
+                                      SignIn.signOut();
+                                    },
+                                    child: Text(
+                                      'Sign out',
+                                      style: GoogleFonts.roboto(
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: 16,
+                                        color: Colors.red,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            )
+                          : Container(),
+                    )
                   ],
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }

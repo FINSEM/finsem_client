@@ -31,14 +31,12 @@ class WelcomeScreen extends StatelessWidget {
                 Container(),
                 Column(
                   children: [
-                    Container(
-                      child: TextButton(
-                        onPressed: () {
-                          SignIn.signin();
-                        },
-                        child: const Text(
-                          'G - Sign IN',
-                        ),
+                    TextButton(
+                      onPressed: () {
+                        SignIn.signin();
+                      },
+                      child: const Text(
+                        'G - Sign IN',
                       ),
                     ),
                   ],
