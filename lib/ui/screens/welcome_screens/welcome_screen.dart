@@ -1,4 +1,4 @@
-import 'package:finsem_client/signin/gsign.dart';
+import 'package:finsem_client/controller/signin/gsign.dart';
 import 'package:finsem_client/ui/screens/dashboard/dashboard_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
