@@ -23,7 +23,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
     setState(() {
       _expanded = !_expanded;
       _expanded ? _height = 750.h : _height = 60.h;
-      _expanded ? _radius = 30.h : _radius = 0.h;
+      _expanded ? _radius = 0.h : _radius = 30.h;
       Future.delayed(const Duration(milliseconds: 500)).then((value) {
         setState(() {
           _visible = !_visible;
@@ -71,8 +71,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 decoration: BoxDecoration(
                   color: const Color(0xff483c94),
                   borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(30.h),
-                    bottomRight: Radius.circular(_radius),
+                    bottomLeft: Radius.circular(_radius),
                   ),
                 ),
                 duration: const Duration(seconds: 1),

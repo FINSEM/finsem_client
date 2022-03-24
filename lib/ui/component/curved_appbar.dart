@@ -3,12 +3,19 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CurvedAppBar extends StatelessWidget {
+  /// CurvedAppBar Provides you with built-in scaffold and statusBar color.
+  ///
+  /// Just pass the [title] and [child] to be displayed on the screen.
   const CurvedAppBar({
     required this.title,
     required this.child,
     Key? key,
   }) : super(key: key);
+
+  /// Title to be shown in AppBar.
   final String title;
+
+  /// Widget to be displayed in the body of the the screen.
   final Widget child;
 
   @override
