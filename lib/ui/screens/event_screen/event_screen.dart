@@ -1,4 +1,4 @@
-import 'package:finsem_client/controller/api_controller.dart';
+import 'package:finsem_client/controller/event_controller.dart';
 import 'package:finsem_client/model/event_model.dart';
 import 'package:flutter/material.dart';
 import 'package:finsem_client/ui/component/curved_appbar.dart';
@@ -17,7 +17,7 @@ class _EventsScreenState extends State<EventsScreen> {
     return CurvedAppBar(
       title: 'Post Events',
       child: FutureBuilder<List<Event>>(
-        future: ApiController().fetchEvents(),
+        future: EventController.fetchEvents(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(
