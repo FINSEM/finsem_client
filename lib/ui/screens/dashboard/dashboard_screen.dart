@@ -1,6 +1,7 @@
 import 'package:finsem_client/controller/signin/gsign.dart';
 import 'package:finsem_client/ui/component/svg_icon.dart';
 import 'package:finsem_client/ui/screens/event_screen/event_screen.dart';
+import 'package:finsem_client/ui/screens/transactions_screen/paymentScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -150,7 +151,15 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                       DashboardOptions(
                                         title: 'Payments',
                                         asset: "assets/images/profile_pic.jpg",
-                                        onPressed: () {},
+                                        onPressed: () {
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) =>
+                                                  const PaymentScreen(),
+                                            ),
+                                          );
+                                        },
                                       ),
                                     ],
                                   ),
