@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 
 class UserController extends GetxController {
+  // ignore: prefer_final_fields
   static Rx<FirebaseUser> _loggedInUser = FirebaseUser(
     name: '',
     add: '',
