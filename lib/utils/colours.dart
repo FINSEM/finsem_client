@@ -1,7 +1,7 @@
 import 'package:flutter/painting.dart';
 
 class FinColours {
-  static Color TextColor = Color(0xffe2e2e2);
+  static Color textColor = Color(0xffe2e2e2);
   static Color mainColor = Color(0xff483c94);
   static Color grey = Color(0xff63636a);
   static Color settingsBackground = Color(0xff483c94);

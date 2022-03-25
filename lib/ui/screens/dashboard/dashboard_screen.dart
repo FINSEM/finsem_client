@@ -17,7 +17,7 @@ class DashboardScreen extends StatefulWidget {
 
 class _DashboardScreenState extends State<DashboardScreen> {
   double _height = 60.h;
-  double _radius = 0;
+  double _radius = 30.h;
   bool _expanded = false;
   bool _visible = false;
   void expand() {
@@ -184,19 +184,28 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                   Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
-                                    children: const [
-                                      DashboardOptions(
+                                    children: [
+                                      const DashboardOptions(
                                           title: 'Calendar',
                                           asset:
                                               "assets/images/profile_pic.jpg"),
-                                      DashboardOptions(
+                                      const DashboardOptions(
                                           title: 'Multimedia',
                                           asset:
                                               "assets/images/profile_pic.jpg"),
                                       DashboardOptions(
-                                          title: 'Payments',
-                                          asset:
-                                              "assets/images/profile_pic.jpg"),
+                                        title: 'Charity',
+                                        asset: "assets/images/profile_pic.jpg",
+                                        onPressed: () {
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) =>
+                                                  const PaymentScreen(),
+                                            ),
+                                          );
+                                        },
+                                      ),
                                     ],
                                   ),
                                   TextButton(
