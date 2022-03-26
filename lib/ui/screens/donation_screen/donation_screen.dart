@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class DashboardScreen extends StatefulWidget {
-  const DashboardScreen({Key? key}) : super(key: key);
+class DonationScreen extends StatefulWidget {
+  const DonationScreen({Key? key}) : super(key: key);
 
   @override
-  State<DashboardScreen> createState() => _DashboardScreenState();
+  State<DonationScreen> createState() => _DonationScreenState();
 }
 
-class _DashboardScreenState extends State<DashboardScreen> {
+class _DonationScreenState extends State<DonationScreen> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -16,7 +16,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
         child: Scaffold(
           backgroundColor: Colors.white,
           body: Center(
-            child: Text('Dashboard'),
+            child: Text('Donations'),
           ),
         ),
       ),

@@ -1,5 +1,7 @@
 import 'package:finsem_client/controller/event_controller.dart';
 import 'package:finsem_client/controller/user_controller.dart';
+import 'package:finsem_client/ui/component/nav_bar.dart';
+import 'package:finsem_client/ui/screens/home_screen/home_screen.dart';
 
 import 'ui/screens/welcome_screens/welcome_screen.dart';
 import 'package:firebase_app_check/firebase_app_check.dart';
@@ -32,7 +34,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: const WelcomeScreen(),
+        home: BottomNavBar(),
       ),
     );
   }
