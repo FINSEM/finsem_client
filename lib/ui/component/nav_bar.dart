@@ -24,9 +24,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: _NavScreens.elementAt(selectedIndex.value),
-      ),
+      body: _NavScreens.elementAt(selectedIndex.value),
       backgroundColor: Colors.white,
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
@@ -51,17 +49,10 @@ class _BottomNavBarState extends State<BottomNavBar> {
               duration: Duration(milliseconds: 400),
               tabBackgroundColor: Colors.grey[200]!,
               color: Colors.black,
-              tabs: [
+              tabs: const [
                 GButton(
                   icon: LineIcons.home,
                   text: 'Home',
-                  // onPressed: () {
-                  //   Navigator.push(
-                  //       context,
-                  //       MaterialPageRoute(
-                  //         builder: (context) => const HomeScreen(),
-                  //       ));
-                  // },
                 ),
                 GButton(
                   icon: LineIcons.helpingHands,

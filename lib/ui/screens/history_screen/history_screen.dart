@@ -11,7 +11,7 @@ class HistoryScreen extends StatelessWidget {
       color: FinColours.secondaryColor,
       child: Center(
         child: ListView.builder(
-            itemCount: 9,
+            itemCount: 5,
             itemBuilder: (BuildContext context, int index) {
               return Column(
                 children: [

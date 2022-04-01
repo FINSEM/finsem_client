@@ -1,39 +1,74 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-void main() => runApp(MaterialApp(
-      home: MainScreen(),
-    ));
-
-class MainScreen extends StatelessWidget {
-  final List<int> numbers = [1, 2, 3, 5, 8, 13, 21, 34, 55];
+class Dump extends StatelessWidget {
+  const Dump({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Horizontal ListView'),
-      ),
-      body: Container(
-        padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 24.0),
-        height: MediaQuery.of(context).size.height * 0.35,
-        child: ListView.builder(
-            scrollDirection: Axis.horizontal,
-            itemCount: numbers.length,
-            itemBuilder: (context, index) {
-              return Container(
-                width: MediaQuery.of(context).size.width * 0.6,
-                child: Card(
-                  color: Colors.blue,
-                  child: Container(
-                    child: Center(
-                        child: Text(
-                      numbers[index].toString(),
-                      style: TextStyle(color: Colors.white, fontSize: 36.0),
-                    )),
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: SafeArea(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                //crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Container(
+                    color: Colors.grey,
+                    width: 140.w,
+                    height: 100,
                   ),
-                ),
-              );
-            }),
+                  //Text("BMI App"),
+                  Container(
+                    color: Colors.amberAccent,
+                    width: 140.w,
+                    height: 100,
+                  ),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
+                    color: Colors.green,
+                    width: 150.w,
+                    height: 250,
+                  ),
+                  Container(
+                    //color: Colors.blue,
+                    height: 280,
+                    width: 150.w,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Container(
+                          color: Colors.pinkAccent,
+                          width: 150.w,
+                          height: 180,
+                        ),
+                        Container(
+                          color: Colors.brown,
+                          width: 150.w,
+                          height: 100,
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+              Container(
+                color: Colors.cyan,
+                width: 360.w,
+                height: 100,
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
