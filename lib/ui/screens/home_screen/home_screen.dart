@@ -1,11 +1,12 @@
+import 'package:finsem_client/dummy_data/dummy_Events.dart';
+import 'package:finsem_client/ui/screens/home_screen/event_view.dart';
 import 'package:finsem_client/utils/colours.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:line_icons/line_icons.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
-
+  //HomeScreen({required this.event})
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
@@ -109,87 +110,115 @@ class _HomeScreenState extends State<HomeScreen> {
                         physics: BouncingScrollPhysics(),
                         shrinkWrap: true,
                         scrollDirection: Axis.horizontal,
-                        itemCount: 3,
+
+                        ///--------------------///
+                        //TODO: Update the list length with backend
+                        ///--------------------///
+                        itemCount: DummyData().events.length,
                         itemBuilder: (context, index) {
                           return Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: Material(
-                              borderRadius: BorderRadius.circular(25),
-                              elevation: 5,
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Container(
-                                      height: 140.h,
-                                      child: ClipRRect(
-                                          borderRadius:
-                                              BorderRadius.circular(20),
-                                          child: FittedBox(
-                                            //TODO: Network IMAGE
-                                            child: Image.asset(
-                                                'assets/images/event_image.jpg'),
-                                            fit: BoxFit.fill,
-                                          )),
-                                    ),
-                                    SizedBox(
-                                      height: 5.h,
-                                    ),
-                                    Container(
-                                      padding: EdgeInsets.all(5),
-                                      height: 80.h,
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            "Event Name",
-                                            style: TextStyle(
-                                                color: FinColours
-                                                    .secondaryTextColor,
-                                                fontSize: 22.0),
-                                          ),
-                                          Row(
-                                            children: [
-                                              Icon(
-                                                LineIcons.calendar,
-                                                color: Color(0xffe77c42),
-                                                size: 25,
-                                              ),
-                                              SizedBox(
-                                                width: 5,
-                                              ),
-                                              Text(
-                                                "10-15 May 2022",
-                                                style: TextStyle(
-                                                    color: FinColours.grey,
-                                                    fontSize: 16.0),
-                                              )
-                                            ],
-                                          ),
-                                          Row(
-                                            children: [
-                                              Icon(
-                                                LineIcons.mapMarker,
-                                                color: Color(0xffe77c42),
-                                                size: 25,
-                                              ),
-                                              SizedBox(
-                                                width: 5,
-                                              ),
-                                              Text(
-                                                "Orion Mall",
-                                                style: TextStyle(
-                                                    color: FinColours.grey,
-                                                    fontSize: 15.0),
-                                              )
-                                            ],
-                                          )
-                                        ],
+                            child: GestureDetector(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        EventView(selectedEvent: index),
+                                  ),
+                                );
+                              },
+                              child: Material(
+                                borderRadius: BorderRadius.circular(25),
+                                elevation: 5,
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Container(
+                                        height: 140.h,
+                                        child: ClipRRect(
+                                            borderRadius:
+                                                BorderRadius.circular(20),
+                                            child: FittedBox(
+                                              //TODO: Network IMAGE
+                                              child: Image.asset(
+                                                  //TODO: Update the image url path with backend
+                                                  DummyData()
+                                                      .events[index]
+                                                      .imagePath),
+                                              fit: BoxFit.fill,
+                                            )),
                                       ),
-                                    ),
-                                  ],
+                                      SizedBox(
+                                        height: 5.h,
+                                      ),
+                                      Container(
+                                        padding: EdgeInsets.all(5),
+                                        height: 80.h,
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            //TODO: pass event Title from backend
+
+                                            Text(
+                                              DummyData().events[index].title,
+                                              style: TextStyle(
+                                                  color: FinColours
+                                                      .secondaryTextColor,
+                                                  fontSize: 22.0),
+                                            ),
+                                            Row(
+                                              children: [
+                                                Icon(
+                                                  LineIcons.calendar,
+                                                  color: Color(0xffe77c42),
+                                                  size: 25,
+                                                ),
+                                                SizedBox(
+                                                  width: 5,
+                                                ),
+                                                Text(
+                                                  //TODO: Update the time with backend
+                                                  DummyData()
+                                                      .events[index]
+                                                      .date,
+                                                  style: TextStyle(
+                                                      color: FinColours.grey,
+                                                      fontSize: 16.0),
+                                                )
+                                              ],
+                                            ),
+                                            Row(
+                                              children: [
+                                                const Icon(
+                                                  LineIcons.mapMarker,
+                                                  color: Color(0xffe77c42),
+                                                  size: 25,
+                                                ),
+                                                const SizedBox(
+                                                  width: 5,
+                                                ),
+                                                Text(
+                                                  //TODO: Update the location with backend
+
+                                                  DummyData()
+                                                      .events[index]
+                                                      .location,
+                                                  style: TextStyle(
+                                                      color: FinColours.grey,
+                                                      fontSize: 15.0),
+                                                )
+                                              ],
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),

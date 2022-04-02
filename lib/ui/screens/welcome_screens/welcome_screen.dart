@@ -25,7 +25,7 @@ class WelcomeScreen extends StatelessWidget {
         }
         if (snapshot.data != null) {
           UserController.init();
-          return const HomeScreen();
+          return HomeScreen();
         } else {
           return Scaffold(
             body: Column(
