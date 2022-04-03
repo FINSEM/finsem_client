@@ -17,7 +17,7 @@ class EventView extends StatelessWidget {
         children: [
           SizedBox(
             width: 360.w,
-            height: 350.h,
+            height: 250.h,
             child: ClipRRect(
                 //borderRadius: BorderRadius.circular(20),
                 child: FittedBox(
@@ -58,7 +58,7 @@ class EventView extends StatelessWidget {
             children: [
               Container(
                 padding: EdgeInsets.fromLTRB(8, 3, 8, 8),
-                height: 400.h,
+                height: 480.h,
                 width: 360.w,
                 decoration: const BoxDecoration(
                     color: Color(0xFFffffff),
@@ -154,7 +154,7 @@ class EventView extends StatelessWidget {
                               child: InkWell(
                                 //splashColor: Colors.red, // Splash color
                                 onTap: () {},
-                                child: SizedBox(
+                                child: const SizedBox(
                                     width: 45,
                                     height: 45,
                                     child: Icon(
