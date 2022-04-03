@@ -87,19 +87,62 @@ class _HomeScreenState extends State<HomeScreen> {
                         height: 115.h,
                         padding: EdgeInsets.all(10),
                         decoration: BoxDecoration(
-                            color: const Color(0xFFffffff)
-                                .withOpacity(0.3), //here i want to add opacity
-
+                            color: Color(0xFFEFA8C9),
                             border: Border.all(
                               color: Colors.black54,
                             ),
                             borderRadius: BorderRadius.circular(20)),
-                        child: const Center(
-                          child: Text(
-                            "Pending Payment",
-                            style: TextStyle(
-                                color: Color(0xffffffff), fontSize: 22),
-                          ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Container(
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: const [
+                                      Text(
+                                        "Due Amount",
+                                        style: TextStyle(fontSize: 18),
+                                      ),
+                                      Text(
+                                        "₹ ${"3500"}",
+                                        style: TextStyle(fontSize: 16),
+                                      )
+                                    ],
+                                  ),
+                                  Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment: CrossAxisAlignment.end,
+                                    children: [
+                                      Text(
+                                        "Due Date",
+                                        style: TextStyle(fontSize: 18),
+                                      ),
+                                      Text("${"7 Apr 2022"}",
+                                          style: TextStyle(fontSize: 16)),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                            MaterialButton(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(18.0),
+                              ),
+                              minWidth: 150.0,
+                              height: 35,
+                              color: Color(0xFF971B69),
+                              child: new Text('Pay Now',
+                                  style: new TextStyle(
+                                      fontSize: 16.0, color: Colors.white)),
+                              onPressed: () {},
+                            ),
+                          ],
                         )),
                     const SizedBox(
                       height: 20,
