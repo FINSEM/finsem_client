@@ -8,6 +8,8 @@ import 'package:get/get.dart';
 import 'package:line_icons/line_icons.dart';
 
 class BottomNavBar extends StatefulWidget {
+  const BottomNavBar({Key? key}) : super(key: key);
+
   @override
   State<BottomNavBar> createState() => _BottomNavBarState();
 }
