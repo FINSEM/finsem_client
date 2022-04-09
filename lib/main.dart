@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
         ),
         //home: Dump(),
-        home: BottomNavBar(),
+        home: const WelcomeScreen(),
       ),
     );
   }

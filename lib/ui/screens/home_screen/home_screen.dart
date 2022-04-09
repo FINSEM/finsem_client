@@ -1,5 +1,6 @@
 import 'package:finsem_client/dummy_data/dummy_Events.dart';
 import 'package:finsem_client/ui/screens/home_screen/event_view.dart';
+import 'package:finsem_client/ui/screens/profile_screen/show_profile.dart';
 import 'package:finsem_client/utils/colours.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -63,12 +64,20 @@ class _HomeScreenState extends State<HomeScreen> {
                           )
                         ],
                       ),
-                      const Padding(
-                        padding: EdgeInsets.fromLTRB(0, 0, 5, 0),
-                        child: CircleAvatar(
-                          radius: 16, // Image radius
-                          backgroundImage:
-                              AssetImage("assets/images/profile_pic.jpg"),
+                      GestureDetector(
+                        onTap: (() {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (_) => const ShowProfile()));
+                        }),
+                        child: const Padding(
+                          padding: EdgeInsets.fromLTRB(0, 0, 5, 0),
+                          child: CircleAvatar(
+                            radius: 16, // Image radius
+                            backgroundImage:
+                                AssetImage("assets/images/profile_pic.jpg"),
+                          ),
                         ),
                       ),
                     ],
