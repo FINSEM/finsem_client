@@ -1,6 +1,7 @@
 import 'package:finsem_client/dummy_data/dummy_Events.dart';
 import 'package:finsem_client/ui/screens/home_screen/event_view.dart';
 import 'package:finsem_client/ui/screens/profile_screen/show_profile.dart';
+import 'package:finsem_client/ui/screens/txn_screen/txn_screen.dart';
 import 'package:finsem_client/utils/colours.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -166,7 +167,12 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                           ),
                         ),
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const TxnScreen()));
+                        },
                       ),
                     ],
                   ),
@@ -306,28 +312,38 @@ class _HomeScreenState extends State<HomeScreen> {
                                               fontSize: 12,
                                             ),
                                           ),
-                                          Container(
-                                            height: 20,
-                                            width: 70,
-                                            decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(20),
-                                              gradient: const LinearGradient(
-                                                colors: [
-                                                  Color(0xFFE9573A),
-                                                  Color(0xFFFDC424),
-                                                ],
-                                                begin: Alignment.centerLeft,
-                                                end: Alignment.centerRight,
+                                          GestureDetector(
+                                            onTap: () {
+                                              Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          const TxnScreen()));
+                                            },
+                                            child: Container(
+                                              height: 20,
+                                              width: 70,
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(20),
+                                                gradient: const LinearGradient(
+                                                  colors: [
+                                                    Color(0xFFE9573A),
+                                                    Color(0xFFFDC424),
+                                                  ],
+                                                  begin: Alignment.centerLeft,
+                                                  end: Alignment.centerRight,
+                                                ),
                                               ),
-                                            ),
-                                            child: const Center(
-                                              child: Text(
-                                                "Donate",
-                                                style: TextStyle(
-                                                    fontSize: 10,
-                                                    fontWeight: FontWeight.w700,
-                                                    fontFamily: 'Poppins'),
+                                              child: const Center(
+                                                child: Text(
+                                                  "Donate",
+                                                  style: TextStyle(
+                                                      fontSize: 10,
+                                                      fontWeight:
+                                                          FontWeight.w700,
+                                                      fontFamily: 'Poppins'),
+                                                ),
                                               ),
                                             ),
                                           ),

@@ -1,8 +1,6 @@
 import 'package:finsem_client/controller/event_controller.dart';
+import 'package:finsem_client/controller/txn/txn_controller.dart';
 import 'package:finsem_client/controller/user_controller.dart';
-import 'package:finsem_client/ui/component/nav_bar.dart';
-import 'package:finsem_client/ui/screens/dump.dart';
-import 'package:finsem_client/ui/screens/home_screen/home_screen.dart';
 
 import 'ui/screens/welcome_screens/welcome_screen.dart';
 import 'package:firebase_app_check/firebase_app_check.dart';
@@ -27,6 +25,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     Get.put<UserController>(UserController());
     Get.put<EventController>(EventController());
+    Get.put<TxnController>(TxnController());
     return ScreenUtilInit(
       designSize: const Size(360, 705),
       builder: () => GetMaterialApp(
