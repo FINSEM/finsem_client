@@ -1,4 +1,4 @@
-import 'package:finsem_client/dummy_data/dummy_Events.dart';
+import 'package:finsem_client/dummy_data/dummy_events.dart';
 import 'package:finsem_client/utils/colours.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
