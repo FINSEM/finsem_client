@@ -1,7 +1,7 @@
 import 'package:finsem_client/dummy_data/dummy_Events.dart';
 import 'package:finsem_client/ui/screens/home_screen/event_view.dart';
 import 'package:finsem_client/ui/screens/profile_screen/show_profile.dart';
-import 'package:finsem_client/ui/screens/txn_screen/txn_screen.dart';
+import 'package:finsem_client/ui/screens/txn_screen/upi_screen.dart';
 import 'package:finsem_client/utils/colours.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -10,6 +10,7 @@ import 'package:line_icons/line_icons.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
 class HomeScreen extends StatefulWidget {
+  const HomeScreen({Key? key}) : super(key: key);
   //HomeScreen({required this.event})
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -130,7 +131,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   color: Colors.white,
                                 ),
                               ),
-                              Text("${"7 Apr 2022"}",
+                              Text("7 Apr 2022",
                                   style: TextStyle(
                                     fontSize: 16,
                                     color: Colors.white,
@@ -171,7 +172,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => const TxnScreen()));
+                                  builder: (context) => const UpiScreen()));
                         },
                       ),
                     ],
@@ -318,7 +319,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                   context,
                                                   MaterialPageRoute(
                                                       builder: (context) =>
-                                                          const TxnScreen()));
+                                                          const UpiScreen()));
                                             },
                                             child: Container(
                                               height: 20,

@@ -1,6 +1,5 @@
 import 'package:finsem_client/dummy_data/dummy_Events.dart';
 import 'package:finsem_client/utils/colours.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:line_icons/line_icons.dart';
@@ -8,7 +7,7 @@ import 'package:line_icons/line_icons.dart';
 class EventView extends StatelessWidget {
   final int selectedEvent;
 
-  const EventView({required this.selectedEvent});
+  const EventView({Key? key, required this.selectedEvent}) : super(key: key);
 //DummyData().events[selectedEvent].title
   @override
   Widget build(BuildContext context) {
@@ -57,7 +56,7 @@ class EventView extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               Container(
-                padding: EdgeInsets.fromLTRB(8, 3, 8, 8),
+                padding: const EdgeInsets.fromLTRB(8, 3, 8, 8),
                 height: 480.h,
                 width: 360.w,
                 decoration: const BoxDecoration(
@@ -70,16 +69,12 @@ class EventView extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Center(
-                        child: Container(
+                        child: SizedBox(
                           width: 80.h,
-                          child: Divider(
-                            thickness: 2,
-                          ),
+                          child: const Divider(thickness: 2),
                         ),
                       ),
-                      const SizedBox(
-                        height: 20,
-                      ),
+                      const SizedBox(height: 20),
                       Text(
                         DummyData().events[selectedEvent].title,
                         style: TextStyle(
@@ -97,9 +92,7 @@ class EventView extends StatelessWidget {
                             fontSize: 18.0,
                             fontWeight: FontWeight.w600),
                       ),
-                      const SizedBox(
-                        height: 10,
-                      ),
+                      const SizedBox(height: 10),
                       Text(
                         DummyData().events[selectedEvent].description,
                         style: TextStyle(
@@ -108,18 +101,16 @@ class EventView extends StatelessWidget {
                           fontWeight: FontWeight.w300,
                         ),
                       ),
-                      const SizedBox(
-                        height: 20,
-                      ),
+                      const SizedBox(height: 20),
                       Row(
                         children: [
                           ClipOval(
                             child: Material(
-                              color: Color(0xfff4e5df), // Button color
+                              color: const Color(0xfff4e5df), // Button color
                               child: InkWell(
                                 //splashColor: Colors.red, // Splash color
                                 onTap: () {},
-                                child: SizedBox(
+                                child: const SizedBox(
                                     width: 45,
                                     height: 45,
                                     child: Icon(
@@ -143,14 +134,12 @@ class EventView extends StatelessWidget {
                           ),
                         ],
                       ),
-                      const SizedBox(
-                        height: 12,
-                      ),
+                      const SizedBox(height: 12),
                       Row(
                         children: [
                           ClipOval(
                             child: Material(
-                              color: Color(0xfff4e5df), // Button color
+                              color: const Color(0xfff4e5df), // Button color
                               child: InkWell(
                                 //splashColor: Colors.red, // Splash color
                                 onTap: () {},
@@ -164,9 +153,7 @@ class EventView extends StatelessWidget {
                               ),
                             ),
                           ),
-                          const SizedBox(
-                            width: 15,
-                          ),
+                          const SizedBox(width: 15),
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [

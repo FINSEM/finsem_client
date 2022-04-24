@@ -17,7 +17,7 @@ class BottomNavBar extends StatefulWidget {
 class _BottomNavBarState extends State<BottomNavBar> {
   RxInt selectedIndex = 0.obs;
 
-  static final List<Widget> _NavScreens = <Widget>[
+  static const List<Widget> _navScreens = <Widget>[
     HomeScreen(),
     DonationScreen(),
     SupportScreen(),
@@ -26,7 +26,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _NavScreens.elementAt(selectedIndex.value),
+      body: _navScreens.elementAt(selectedIndex.value),
       backgroundColor: Colors.white,
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
@@ -47,8 +47,8 @@ class _BottomNavBarState extends State<BottomNavBar> {
               gap: 8,
               activeColor: Colors.black,
               iconSize: 24,
-              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-              duration: Duration(milliseconds: 400),
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+              duration: const Duration(milliseconds: 400),
               tabBackgroundColor: Colors.grey[200]!,
               color: Colors.black,
               tabs: const [

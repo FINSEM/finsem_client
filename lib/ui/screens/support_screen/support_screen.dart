@@ -18,27 +18,27 @@ class _SupportScreenState extends State<SupportScreen> {
         isBack: false,
         title: "Customer Support",
         child: Container(
-          padding: EdgeInsets.fromLTRB(15, 5, 15, 5),
+          padding: const EdgeInsets.fromLTRB(15, 5, 15, 5),
           height: 600.h,
           width: 360.w,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              const SizedBox(
-                height: 50,
-              ),
+              const SizedBox(height: 50),
               GestureDetector(
                 onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => ReportIssue()));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const ReportIssue()));
                 },
-                child: Container(
+                child: SizedBox(
                   width: 320.w,
                   height: 45.h,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
+                    children: const [
                       Text(
                         "Report An Issue",
                         style: TextStyle(
@@ -56,15 +56,13 @@ class _SupportScreenState extends State<SupportScreen> {
                   ),
                 ),
               ),
+              const SizedBox(height: 15),
               SizedBox(
-                height: 15,
-              ),
-              Container(
                 width: 320.w,
                 height: 45.h,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
+                  children: const [
                     Text(
                       "Track My Tickets",
                       style:
@@ -81,12 +79,10 @@ class _SupportScreenState extends State<SupportScreen> {
                   ],
                 ),
               ),
-              SizedBox(
-                height: 50,
-              ),
-              Text("Contact Us",
+              const SizedBox(height: 50),
+              const Text("Contact Us",
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-              SizedBox(
+              const SizedBox(
                 height: 30,
               ),
               Container(
@@ -103,14 +99,12 @@ class _SupportScreenState extends State<SupportScreen> {
                   children: [
                     Row(
                       children: [
-                        Icon(
+                        const Icon(
                           Icons.phone_in_talk,
                           size: 20,
                           color: Colors.black,
                         ),
-                        SizedBox(
-                          width: 12,
-                        ),
+                        const SizedBox(width: 12),
                         Text(
                           "+91 9999999999",
                           style: TextStyle(
@@ -121,14 +115,12 @@ class _SupportScreenState extends State<SupportScreen> {
                     ),
                     Row(
                       children: [
-                        Icon(
+                        const Icon(
                           Icons.mail_rounded,
                           size: 20,
                           color: Colors.black,
                         ),
-                        SizedBox(
-                          width: 12,
-                        ),
+                        const SizedBox(width: 12),
                         Text(
                           "finsem004@gmail.com",
                           style: TextStyle(

@@ -48,14 +48,3 @@ class Events {
       required this.date,
       required this.time});
 }
-//
-// List<Events> eventList = [
-//   Events(
-//     title: "Dussehra",
-//     description:
-//         "Vijayadashami (Sanskrit: विजयदशमी, romanized: Vijayadaśamī), also known as Dussehra, Dasara or Dashain, is a major Hindu festival celebrated at the end of Navaratri every year. It is observed on the tenth day in the Hindu calendar month of Ashvin, the seventh month of the Hindu Luni-Solar Calendar, which typically falls in the Gregorian months of September and October",
-//     imagePath: "assets/images/event_image.jpg",
-//     location: "",
-//     time: "",
-//   ),
-// ];

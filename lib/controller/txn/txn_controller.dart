@@ -5,10 +5,12 @@ import 'dart:developer' as debug;
 class TxnController extends GetxController {
   RxList<ApplicationMeta> appMetaList = <ApplicationMeta>[].obs;
 
-  Future getApps() async {
-    appMetaList.value = await UpiPay.getInstalledUpiApplications(
+  Future<List<ApplicationMeta>> getApps() async {
+    List<ApplicationMeta> appMeta = await UpiPay.getInstalledUpiApplications(
         paymentType: UpiApplicationDiscoveryAppPaymentType.nonMerchant,
         statusType: UpiApplicationDiscoveryAppStatusType.all);
+    appMetaList.value = appMeta;
+    return appMeta;
   }
 
   doUpiTransation(ApplicationMeta appMeta) async {

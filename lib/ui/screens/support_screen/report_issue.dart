@@ -1,8 +1,6 @@
 import 'package:finsem_client/ui/component/curved_appbar.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class ReportIssue extends StatefulWidget {
   const ReportIssue({Key? key}) : super(key: key);
@@ -34,13 +32,13 @@ class _ReportIssueState extends State<ReportIssue> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
+              const Text(
                 "Please Select Your Issue",
                 style: TextStyle(
                   fontSize: 20,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               Container(
@@ -72,16 +70,16 @@ class _ReportIssueState extends State<ReportIssue> {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 30,
               ),
-              Text(
+              const Text(
                 "Please Enter Your Comments",
                 style: TextStyle(
                   fontSize: 20,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               Container(
@@ -95,8 +93,8 @@ class _ReportIssueState extends State<ReportIssue> {
                   autofocus: false,
                   keyboardType: TextInputType.multiline,
                   maxLines: null,
-                  style: TextStyle(color: Colors.black, fontSize: 18),
-                  decoration: InputDecoration(
+                  style: const TextStyle(color: Colors.black, fontSize: 18),
+                  decoration: const InputDecoration(
                       border: InputBorder.none,
                       contentPadding: EdgeInsets.all(8)
                       //labelText: 'Comments',
@@ -106,9 +104,7 @@ class _ReportIssueState extends State<ReportIssue> {
                   },
                 ),
               ),
-              SizedBox(
-                height: 30,
-              ),
+              const SizedBox(height: 30),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -140,10 +136,7 @@ class _ReportIssueState extends State<ReportIssue> {
                         ),
                       ),
                     ),
-                    onPressed: () {
-                      print("issuevalue");
-                      print(issuecomment);
-                    },
+                    onPressed: () {},
                   ),
                 ],
               ),

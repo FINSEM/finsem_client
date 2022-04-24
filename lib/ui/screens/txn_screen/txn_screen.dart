@@ -1,7 +1,5 @@
+import 'package:finsem_client/ui/component/curved_appbar.dart';
 import 'package:flutter/material.dart';
-import 'package:upi_pay/upi_pay.dart';
-import 'package:finsem_client/controller/txn/txn_controller.dart';
-import 'package:get/get.dart';
 
 class TxnScreen extends StatefulWidget {
   const TxnScreen({Key? key}) : super(key: key);
@@ -11,34 +9,40 @@ class TxnScreen extends StatefulWidget {
 }
 
 class _TxnScreenState extends State<TxnScreen> {
-  final TxnController _txnController = Get.find<TxnController>();
+  TextEditingController? _amountController;
+  TextEditingController? _mssgController;
 
   @override
   void initState() {
-    _txnController.getApps();
+    _amountController = TextEditingController();
+    _mssgController = TextEditingController();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Obx(
-        () => ListView.builder(
-          itemCount: _txnController.appMetaList.length,
-          itemBuilder: (context, index) {
-            return ListTile(
-              leading: _txnController.appMetaList[index].iconImage(48),
-              title: Container(
-                margin: const EdgeInsets.only(top: 4),
-                alignment: Alignment.center,
-                child: Text(
-                  _txnController.appMetaList[index].upiApplication.appName,
-                  textAlign: TextAlign.center,
-                ),
-              ),
-            );
-          },
-        ),
+    return CurvedAppBar(
+      title: 'Transaction',
+      isBack: true,
+      child: Column(
+        children: [
+          const Text('Amount'),
+          TextFormField(
+            controller: _amountController,
+            maxLines: 1,
+            initialValue: 'Enter Amount',
+            keyboardType: TextInputType.number,
+            autovalidateMode: AutovalidateMode.always,
+          ),
+          TextFormField(
+            controller: _mssgController,
+            maxLines: 1,
+            initialValue: 'Enter Amount',
+            keyboardType: TextInputType.text,
+            autocorrect: false,
+            autovalidateMode: AutovalidateMode.always,
+          ),
+        ],
       ),
     );
   }
