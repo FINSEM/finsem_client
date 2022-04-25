@@ -13,14 +13,17 @@ class TxnController extends GetxController {
     return appMeta;
   }
 
-  doUpiTransation(ApplicationMeta appMeta) async {
+  doUpiTransation(
+      {required ApplicationMeta appMeta,
+      String amount = '100.00',
+      String note = 'Monthly Payment'}) async {
     final UpiTransactionResponse response = await UpiPay.initiateTransaction(
-      amount: '100.00',
+      amount: amount,
       app: appMeta.upiApplication,
       receiverName: 'Faiz',
       receiverUpiAddress: '9691406178@paytm',
       transactionRef: 'UPITXREF0001',
-      transactionNote: 'Monthly payment',
+      transactionNote: note,
     );
     debug.log(response.status.toString());
   }
