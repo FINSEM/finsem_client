@@ -20,8 +20,8 @@ class TxnController extends GetxController {
     final UpiTransactionResponse response = await UpiPay.initiateTransaction(
       amount: amount,
       app: appMeta.upiApplication,
-      receiverName: 'Faiz',
-      receiverUpiAddress: '9691406178@paytm',
+      receiverName: 'Living Hood',
+      receiverUpiAddress: 'dheerajgupta.sbi@ybl',
       transactionRef: 'UPITXREF0001',
       transactionNote: note,
     );

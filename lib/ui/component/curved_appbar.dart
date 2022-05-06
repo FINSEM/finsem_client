@@ -3,15 +3,17 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CurvedAppBar extends StatelessWidget {
-  const CurvedAppBar({
+  CurvedAppBar({
     required this.title,
     required this.child,
     required this.isBack,
+    this.leading,
     Key? key,
   }) : super(key: key);
   final String title;
   final Widget child;
   final bool isBack;
+  Widget? leading;
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +45,8 @@ class CurvedAppBar extends StatelessWidget {
                 child: child,
               ),
               Container(
-                padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 20.w),
+                padding: EdgeInsets.only(
+                    top: 10.h, bottom: 10.h, left: 20.w, right: 10.w),
                 height: 60.h,
                 width: 360.w,
                 decoration: BoxDecoration(
@@ -53,7 +56,9 @@ class CurvedAppBar extends StatelessWidget {
                   ),
                 ),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
+                  mainAxisAlignment: isBack
+                      ? MainAxisAlignment.start
+                      : MainAxisAlignment.center,
                   children: [
                     Visibility(
                       visible: isBack,
@@ -61,17 +66,27 @@ class CurvedAppBar extends StatelessWidget {
                         onTap: () {
                           Navigator.pop(context);
                         },
-                        child: const Icon(
-                          Icons.arrow_back,
-                          color: Colors.white,
+                        child: Padding(
+                          padding: EdgeInsets.only(right: 20.w),
+                          child: const Icon(
+                            Icons.arrow_back,
+                            color: Colors.white,
+                          ),
                         ),
                       ),
                     ),
-                    SizedBox(width: 20.w),
                     Text(
                       title,
-                      style: const TextStyle(fontSize: 20, color: Colors.white),
+                      style: const TextStyle(
+                        fontSize: 20,
+                        color: Colors.white,
+                      ),
                     ),
+                    leading == null
+                        ? Container()
+                        : Padding(
+                            padding: EdgeInsets.only(left: 185.w),
+                            child: leading!),
                   ],
                 ),
               ),

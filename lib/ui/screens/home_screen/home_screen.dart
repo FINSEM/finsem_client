@@ -2,8 +2,8 @@ import 'package:finsem_client/dummy_data/dummy_events.dart';
 import 'package:finsem_client/ui/screens/home_screen/event_view.dart';
 import 'package:finsem_client/ui/screens/profile_screen/show_profile.dart';
 import 'package:finsem_client/ui/screens/txn_screen/txn_screen.dart';
-import 'package:finsem_client/ui/screens/txn_screen/upi_screen.dart';
 import 'package:finsem_client/utils/colours.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -74,12 +74,12 @@ class _HomeScreenState extends State<HomeScreen> {
                               MaterialPageRoute(
                                   builder: (_) => const ShowProfile()));
                         }),
-                        child: const Padding(
+                        child: Padding(
                           padding: EdgeInsets.fromLTRB(0, 0, 5, 0),
                           child: CircleAvatar(
                             radius: 16, // Image radius
-                            backgroundImage:
-                                AssetImage("assets/images/profile_pic.jpg"),
+                            backgroundImage: NetworkImage(
+                                FirebaseAuth.instance.currentUser!.photoURL!),
                           ),
                         ),
                       ),
@@ -337,14 +337,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                                   end: Alignment.centerRight,
                                                 ),
                                               ),
-                                              child: const Center(
+                                              child: Center(
                                                 child: Text(
                                                   "Donate",
-                                                  style: TextStyle(
-                                                      fontSize: 10,
-                                                      fontWeight:
-                                                          FontWeight.w700,
-                                                      fontFamily: 'Poppins'),
+                                                  style: GoogleFonts.poppins(
+                                                    fontSize: 10,
+                                                    fontWeight: FontWeight.w700,
+                                                  ),
                                                 ),
                                               ),
                                             ),

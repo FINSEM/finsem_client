@@ -1,3 +1,4 @@
+import 'package:finsem_client/ui/component/curved_appbar.dart';
 import 'package:flutter/material.dart';
 
 class DonationScreen extends StatefulWidget {
@@ -10,16 +11,6 @@ class DonationScreen extends StatefulWidget {
 class _DonationScreenState extends State<DonationScreen> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.white,
-      child: const SafeArea(
-        child: Scaffold(
-          backgroundColor: Colors.white,
-          body: Center(
-            child: Text('Donations'),
-          ),
-        ),
-      ),
-    );
+    return CurvedAppBar(title: 'Donation', child: Container(), isBack: false);
   }
 }

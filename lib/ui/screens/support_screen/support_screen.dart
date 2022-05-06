@@ -42,7 +42,7 @@ class _SupportScreenState extends State<SupportScreen> {
                       Text(
                         "Report An Issue",
                         style: TextStyle(
-                            fontSize: 25, fontWeight: FontWeight.w500),
+                            fontSize: 22, fontWeight: FontWeight.w500),
                       ),
                       SizedBox(
                         width: 30,
@@ -66,7 +66,7 @@ class _SupportScreenState extends State<SupportScreen> {
                     Text(
                       "Track My Tickets",
                       style:
-                          TextStyle(fontSize: 25, fontWeight: FontWeight.w500),
+                          TextStyle(fontSize: 22, fontWeight: FontWeight.w500),
                     ),
                     SizedBox(
                       width: 30,

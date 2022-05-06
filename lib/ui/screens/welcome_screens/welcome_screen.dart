@@ -50,7 +50,7 @@ class WelcomeScreen extends StatelessWidget {
                         Container(
                           margin: EdgeInsets.only(top: 380.h),
                           child: Text(
-                            'FinSem Client.',
+                            'Living Hood.',
                             style: GoogleFonts.ubuntu(
                               fontSize: 30,
                               color: Colors.white,
@@ -61,7 +61,7 @@ class WelcomeScreen extends StatelessWidget {
                           margin: const EdgeInsets.only(top: 10),
                           width: 280.w,
                           child: Text(
-                            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been.",
+                            "One Sollution to manage all your livelihood.",
                             style: GoogleFonts.poppins(
                                 fontSize: 17.sp,
                                 color: const Color(0xffBABABA),
@@ -73,7 +73,7 @@ class WelcomeScreen extends StatelessWidget {
                             top: 20,
                           ),
                         ),
-                        const SizedBox(height: 20),
+                        SizedBox(height: 15.h),
                         MaterialButton(
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10.0),
@@ -83,7 +83,7 @@ class WelcomeScreen extends StatelessWidget {
                             width: 400.w,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10.0),
-                              color: const Color(0xFFFDC424),
+                              color: Color.fromARGB(255, 227, 215, 181),
                             ),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,

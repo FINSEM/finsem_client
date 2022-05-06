@@ -2,6 +2,7 @@ import 'package:finsem_client/ui/component/curved_appbar.dart';
 import 'package:finsem_client/utils/colours.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class HistoryScreen extends StatelessWidget {
   const HistoryScreen({Key? key}) : super(key: key);
@@ -9,7 +10,7 @@ class HistoryScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CurvedAppBar(
-      isBack: false,
+        isBack: false,
         title: "History",
         child: Container(
           color: FinColours.secondaryColor,
@@ -25,54 +26,57 @@ class HistoryScreen extends StatelessWidget {
                       Container(
                         padding: const EdgeInsets.fromLTRB(18, 10, 18, 10),
                         decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
+                          borderRadius: BorderRadius.circular(10),
                           color: FinColours.transactionBackground3,
                         ),
                         height: 80,
-                        width: 300.w,
-                        child: Row(
+                        width: 320.w,
+                        child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Column(
+                            Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              crossAxisAlignment: CrossAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 Text(
                                   "Maintenance Feb",
-                                  style: TextStyle(
-                                      color: FinColours.grey, fontSize: 18),
+                                  style: GoogleFonts.montserrat(
+                                    color: FinColours.grey,
+                                    fontSize: 18,
+                                  ),
                                 ),
                                 Text(
-                                  "₹ 14,000",
-                                  style: TextStyle(
-                                      color: FinColours.secondaryTextColor,
-                                      fontSize: 24),
+                                  "Paid",
+                                  style: GoogleFonts.montserrat(
+                                    color: FinColours.green,
+                                    fontSize: 16,
+                                  ),
                                 ),
                               ],
                             ),
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 Text(
-                                  "Paid",
-                                  style: TextStyle(
-                                      color: FinColours.green, fontSize: 18),
+                                  "₹ 14,000",
+                                  style: GoogleFonts.poppins(
+                                      color: FinColours.secondaryTextColor,
+                                      fontSize: 18),
                                 ),
                                 Text(
                                   "16 Feb",
-                                  style: TextStyle(
+                                  style: GoogleFonts.poppins(
                                       color: FinColours.secondaryTextColor,
-                                      fontSize: 18),
+                                      fontSize: 16),
                                 ),
                               ],
                             ),
                           ],
                         ),
                       ),
-                      const SizedBox(
-                        height: 5,
-                      ),
+                      const SizedBox(height: 5),
                     ],
                   );
                 }),
