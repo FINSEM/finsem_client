@@ -1,7 +1,5 @@
-import 'package:finsem_client/controller/event_controller.dart';
+import 'package:finsem_client/controller/api_helper.dart';
 import 'package:finsem_client/controller/txn/txn_controller.dart';
-import 'package:finsem_client/controller/user_controller.dart';
-
 import 'ui/screens/welcome_screens/welcome_screen.dart';
 import 'package:firebase_app_check/firebase_app_check.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -23,8 +21,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    Get.put<UserController>(UserController());
-    Get.put<EventController>(EventController());
+    Get.put<ApiHelper>(ApiHelper());
     Get.put<TxnController>(TxnController());
     return ScreenUtilInit(
       designSize: const Size(360, 705),

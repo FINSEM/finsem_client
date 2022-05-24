@@ -6,11 +6,22 @@ class Api {
       fetchEvents() async {
     var eventsSnap = await _db
         .collection('Organizations')
-        .doc('OU7N0lCaWVxbYssLmM19')
+        .doc('tw2TPyM4WQgbLJ3w4hxAfGnc9JE2')
         .collection('Events')
         .get();
     eventsSnap.docs;
     return eventsSnap.docs;
+  }
+
+  static Future<List<DocumentSnapshot<Map<String, dynamic>>>>
+      fetchCook() async {
+    var cookSnap = await _db
+        .collection('Organizations')
+        .doc('tw2TPyM4WQgbLJ3w4hxAfGnc9JE2')
+        .collection('Cook')
+        .get();
+    cookSnap.docs;
+    return cookSnap.docs;
   }
 
   static Future<DocumentSnapshot<Map<String, dynamic>>> fetchUser(

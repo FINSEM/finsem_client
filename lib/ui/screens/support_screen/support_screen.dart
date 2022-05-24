@@ -1,4 +1,5 @@
 import 'package:finsem_client/ui/component/curved_appbar.dart';
+import 'package:finsem_client/ui/screens/cook_screen/cook_screen.dart';
 import 'package:finsem_client/ui/screens/support_screen/report_issue.dart';
 import 'package:finsem_client/utils/colours.dart';
 import 'package:flutter/material.dart';
@@ -17,10 +18,9 @@ class _SupportScreenState extends State<SupportScreen> {
     return CurvedAppBar(
         isBack: false,
         title: "Customer Support",
-        child: Container(
-          padding: const EdgeInsets.fromLTRB(15, 5, 15, 5),
-          height: 600.h,
-          width: 360.w,
+        child: Padding(
+          padding:
+              const EdgeInsets.only(left: 15, top: 5, right: 15, bottom: 5),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.start,
@@ -37,7 +37,7 @@ class _SupportScreenState extends State<SupportScreen> {
                   width: 320.w,
                   height: 45.h,
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: const [
                       Text(
                         "Report An Issue",
@@ -61,7 +61,7 @@ class _SupportScreenState extends State<SupportScreen> {
                 width: 320.w,
                 height: 45.h,
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: const [
                     Text(
                       "Track My Tickets",
@@ -77,6 +77,68 @@ class _SupportScreenState extends State<SupportScreen> {
                       color: Colors.blue,
                     )
                   ],
+                ),
+              ),
+              const SizedBox(height: 15),
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const CookScreen()));
+                },
+                child: SizedBox(
+                  width: 320.w,
+                  height: 45.h,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: const [
+                      Text(
+                        "Find a Cook",
+                        style: TextStyle(
+                            fontSize: 22, fontWeight: FontWeight.w500),
+                      ),
+                      SizedBox(
+                        width: 30,
+                      ),
+                      Icon(
+                        Icons.navigate_next,
+                        size: 40,
+                        color: Colors.blue,
+                      )
+                    ],
+                  ),
+                ),
+              ),
+              const SizedBox(height: 15),
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const CookScreen()));
+                },
+                child: SizedBox(
+                  width: 320.w,
+                  height: 45.h,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: const [
+                      Text(
+                        "Find a Maid",
+                        style: TextStyle(
+                            fontSize: 22, fontWeight: FontWeight.w500),
+                      ),
+                      SizedBox(
+                        width: 30,
+                      ),
+                      Icon(
+                        Icons.navigate_next,
+                        size: 40,
+                        color: Colors.blue,
+                      )
+                    ],
+                  ),
                 ),
               ),
               const SizedBox(height: 50),

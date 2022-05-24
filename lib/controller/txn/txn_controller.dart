@@ -1,30 +1,27 @@
 import 'package:get/get.dart';
-import 'package:upi_pay/upi_pay.dart';
 import 'dart:developer' as debug;
 
+import 'package:razorpay_flutter/razorpay_flutter.dart';
+
 class TxnController extends GetxController {
-  RxList<ApplicationMeta> appMetaList = <ApplicationMeta>[].obs;
-
-  Future<List<ApplicationMeta>> getApps() async {
-    List<ApplicationMeta> appMeta = await UpiPay.getInstalledUpiApplications(
-        paymentType: UpiApplicationDiscoveryAppPaymentType.nonMerchant,
-        statusType: UpiApplicationDiscoveryAppStatusType.all);
-    appMetaList.value = appMeta;
-    return appMeta;
-  }
-
-  doUpiTransation(
-      {required ApplicationMeta appMeta,
-      String amount = '100.00',
+  doTransation(
+      {required Razorpay razorpay,
+      double amount = 100,
       String note = 'Monthly Payment'}) async {
-    final UpiTransactionResponse response = await UpiPay.initiateTransaction(
-      amount: amount,
-      app: appMeta.upiApplication,
-      receiverName: 'Living Hood',
-      receiverUpiAddress: 'dheerajgupta.sbi@ybl',
-      transactionRef: 'UPITXREF0001',
-      transactionNote: note,
-    );
-    debug.log(response.status.toString());
+    var options = {
+      'key': 'rzp_test_pAkUdRPOwbFrYo',
+      'amount': amount * 100,
+      'name': 'Finsem',
+      'description': note,
+      'prefill': {
+        'contact': '8888888888',
+        'email': 'test@razorpay.com',
+      },
+    };
+    try {
+      razorpay.open(options);
+    } catch (e) {
+      debug.log(e.toString());
+    }
   }
 }
