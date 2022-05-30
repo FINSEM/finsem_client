@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CurvedAppBar extends StatelessWidget {
-  CurvedAppBar({
+  const CurvedAppBar({
     required this.title,
     required this.child,
     required this.isBack,
@@ -13,7 +13,7 @@ class CurvedAppBar extends StatelessWidget {
   final String title;
   final Widget child;
   final bool isBack;
-  Widget? leading;
+  final Widget? leading;
 
   @override
   Widget build(BuildContext context) {

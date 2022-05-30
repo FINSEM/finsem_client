@@ -1,5 +1,4 @@
 import 'package:finsem_client/controller/api_helper.dart';
-import 'package:finsem_client/controller/signin/gsign.dart';
 import 'package:finsem_client/ui/component/curved_appbar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';

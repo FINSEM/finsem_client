@@ -83,7 +83,7 @@ class WelcomeScreen extends StatelessWidget {
                             width: 400.w,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10.0),
-                              color: Color.fromARGB(255, 227, 215, 181),
+                              color: const Color.fromARGB(255, 227, 215, 181),
                             ),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,

@@ -1,6 +1,6 @@
 import 'package:finsem_client/controller/txn/txn_controller.dart';
 import 'package:finsem_client/ui/component/curved_appbar.dart';
-import 'package:finsem_client/ui/screens/txn_screen/upi_screen.dart';
+import 'package:finsem_client/ui/screens/txn_screen/txn_success.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -39,7 +39,9 @@ class _TxnScreenState extends State<TxnScreen> {
   }
 
   void _handlePaymentSuccess(PaymentSuccessResponse response) {
-    // Do something when payment succeeds
+    Navigator.pop(context);
+    Navigator.push(context,
+        MaterialPageRoute(builder: (context) => const TxnSuccessScreen()));
   }
 
   void _handlePaymentError(PaymentFailureResponse response) {

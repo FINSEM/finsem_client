@@ -75,7 +75,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   builder: (_) => const ShowProfile()));
                         }),
                         child: Padding(
-                          padding: EdgeInsets.fromLTRB(0, 0, 5, 0),
+                          padding: const EdgeInsets.fromLTRB(0, 0, 5, 0),
                           child: CircleAvatar(
                             radius: 16, // Image radius
                             backgroundImage: NetworkImage(
