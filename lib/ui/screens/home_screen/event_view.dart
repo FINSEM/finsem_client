@@ -1,4 +1,4 @@
-import 'package:finsem_client/dummy_data/dummy_events.dart';
+import 'package:finsem_client/dummy_data/dummy_data.dart';
 import 'package:finsem_client/utils/colours.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -21,9 +21,9 @@ class EventView extends StatelessWidget {
                 //borderRadius: BorderRadius.circular(20),
                 child: FittedBox(
               //TODO: Network IMAGE
-              child: Image.asset(
+              child: Image.network(
                   //TODO: Update the image url path with backend
-                  DummyData().events[selectedEvent].imagePath),
+                  DummyData().events[selectedEvent].imageLink),
               fit: BoxFit.fill,
             )),
           ),

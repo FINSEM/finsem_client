@@ -1,4 +1,4 @@
-import 'package:finsem_client/dummy_data/dummy_events.dart';
+import 'package:finsem_client/dummy_data/dummy_data.dart';
 import 'package:finsem_client/ui/screens/home_screen/event_view.dart';
 import 'package:finsem_client/ui/screens/profile_screen/show_profile.dart';
 import 'package:finsem_client/ui/screens/txn_screen/txn_screen.dart';
@@ -244,7 +244,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                       image: DecorationImage(
                                         image: AssetImage(
                                             //TODO: Update the image url path with backend
-                                            DummyData().events[0].imagePath),
+                                            DummyData().events[0].imageLink),
                                         fit: BoxFit.fill,
                                       )),
                                 ),
@@ -423,7 +423,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                       borderRadius: BorderRadius.circular(15),
                                       child: Image.asset(
                                         //TODO: Update the image url path with backend
-                                        DummyData().events[index].imagePath,
+                                        DummyData().events[index].imageLink,
                                         fit: BoxFit.cover,
                                       )),
                                 ),

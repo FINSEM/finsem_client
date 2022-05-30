@@ -1,8 +1,9 @@
 import 'package:finsem_client/model/event_model.dart';
+import 'package:finsem_client/model/txn_model.dart';
 import 'package:get/get.dart';
 
 class DummyData {
-  RxList events = [
+  RxList<Event> events = [
     Event(
       title: "Dussehra",
       description:
@@ -48,6 +49,58 @@ class DummyData {
       time: "10Am-2Pm",
       donation: true,
       amountReq: 15000,
+    ),
+  ].obs;
+  RxList<Txn> txns = [
+    Txn(
+      id: '1513515131#1515',
+      desc: "March payment",
+      paidBy: 'lXRK6svHrwVCkrkGiGuckVJDF6H2',
+      orgId: "tw2TPyM4WQgbLJ3w4hxAfGnc9JE2",
+      type: 'Monthly Payment',
+      date: "24/05/2022",
+      time: "13:44",
+      pyMode: "Upi",
+    ),
+    Txn(
+      id: '1513515131#1515',
+      desc: "March payment",
+      paidBy: 'lXRK6svHrwVCkrkGiGuckVJDF6H2',
+      orgId: "tw2TPyM4WQgbLJ3w4hxAfGnc9JE2",
+      type: 'Monthly Payment',
+      date: "24/05/2022",
+      time: "13:44",
+      pyMode: "Upi",
+    ),
+    Txn(
+      id: '1513515131#1515',
+      desc: "March payment",
+      paidBy: 'lXRK6svHrwVCkrkGiGuckVJDF6H2',
+      orgId: "tw2TPyM4WQgbLJ3w4hxAfGnc9JE2",
+      type: 'Monthly Payment',
+      date: "24/05/2022",
+      time: "13:44",
+      pyMode: "Upi",
+    ),
+    Txn(
+      id: '1513515131#1515',
+      desc: "March payment",
+      paidBy: 'lXRK6svHrwVCkrkGiGuckVJDF6H2',
+      orgId: "tw2TPyM4WQgbLJ3w4hxAfGnc9JE2",
+      type: 'Monthly Payment',
+      date: "24/05/2022",
+      time: "13:44",
+      pyMode: "Upi",
+    ),
+    Txn(
+      id: '1513515131#1515',
+      desc: "March payment",
+      paidBy: 'lXRK6svHrwVCkrkGiGuckVJDF6H2',
+      orgId: "tw2TPyM4WQgbLJ3w4hxAfGnc9JE2",
+      type: 'Monthly Payment',
+      date: "24/05/2022",
+      time: "13:44",
+      pyMode: "Upi",
     ),
   ].obs;
 }
