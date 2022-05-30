@@ -128,5 +128,44 @@ class DummyData {
       mobile: '+919914170014',
       gender: 'F',
     ),
+    HouseKeeping(
+      name: 'Rishi yadav',
+      age: 30,
+      desc: 'Gourmet cook with 6+ years experience',
+      hkType: HkType.cook,
+      veg: false,
+      mobile: '+919914170014',
+      gender: 'M',
+    ),
+    HouseKeeping(
+      name: 'Anita',
+      age: 30,
+      desc:
+          'Skilled cook having more than 3 years of experience and cooks north indian varieties, south indian varieties, marwari dishes and Chinese dishes too',
+      hkType: HkType.cook,
+      veg: false,
+      mobile: '+919914170014',
+      gender: 'F',
+    ),
+    HouseKeeping(
+      name: 'Parvez qaiser',
+      age: 30,
+      desc:
+          'He is skilled, punctual and obedient cook. He cooks on basis on ur requirement or desire. Cooks kashmiri, Punjabi and mughlai dishes and having 2+ years experience',
+      hkType: HkType.cook,
+      veg: false,
+      mobile: '+919914170014',
+      gender: 'M',
+    ),
+    HouseKeeping(
+      name: 'Lakhan',
+      age: 30,
+      desc:
+          'Skilled cooks with 1 year experience and makes delicious and tasty north Indian as well as south indian food.',
+      hkType: HkType.cook,
+      veg: false,
+      mobile: '+919914170014',
+      gender: 'M',
+    ),
   ].obs;
 }
