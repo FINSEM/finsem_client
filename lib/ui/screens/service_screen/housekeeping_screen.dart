@@ -51,6 +51,8 @@ class _CookScreenState extends State<CookScreen> {
                             const SizedBox(height: 5),
                             Text(
                               DummyData().houseKeeping[ind].desc,
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
                             ),
                           ],
                         ),
