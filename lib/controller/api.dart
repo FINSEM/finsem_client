@@ -14,7 +14,7 @@ class Api {
   }
 
   static Future<List<DocumentSnapshot<Map<String, dynamic>>>>
-      fetchCook() async {
+      fetchHouseKeeping() async {
     var cookSnap = await _db
         .collection('Organizations')
         .doc('tw2TPyM4WQgbLJ3w4hxAfGnc9JE2')

@@ -1,5 +1,6 @@
 class Txn {
   final String id;
+  final num amount;
   final String desc;
   final String type;
   final String date;
@@ -10,6 +11,7 @@ class Txn {
 
   Txn({
     required this.id,
+    required this.amount,
     required this.desc,
     required this.paidBy,
     required this.orgId,

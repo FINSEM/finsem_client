@@ -208,9 +208,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
                 CarouselSlider.builder(
-                  itemCount: 3,
+                  itemCount: DummyData().events.length,
                   options: CarouselOptions(
-                    enableInfiniteScroll: false,
                     aspectRatio: 16 / 6.5,
                     viewportFraction: 0.8.h,
                     // enlargeCenterPage: true,
@@ -242,9 +241,11 @@ class _HomeScreenState extends State<HomeScreen> {
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(10),
                                       image: DecorationImage(
-                                        image: AssetImage(
+                                        image: NetworkImage(
                                             //TODO: Update the image url path with backend
-                                            DummyData().events[0].imageLink),
+                                            DummyData()
+                                                .events[index]
+                                                .imageLink),
                                         fit: BoxFit.fill,
                                       )),
                                 ),
@@ -314,40 +315,48 @@ class _HomeScreenState extends State<HomeScreen> {
                                               fontSize: 12,
                                             ),
                                           ),
-                                          GestureDetector(
-                                            onTap: () {
-                                              Navigator.push(
-                                                  context,
-                                                  MaterialPageRoute(
-                                                      builder: (context) =>
-                                                          const TxnScreen()));
-                                            },
-                                            child: Container(
-                                              height: 20,
-                                              width: 70,
-                                              decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(20),
-                                                gradient: const LinearGradient(
-                                                  colors: [
-                                                    Color(0xFFE9573A),
-                                                    Color(0xFFFDC424),
-                                                  ],
-                                                  begin: Alignment.centerLeft,
-                                                  end: Alignment.centerRight,
-                                                ),
-                                              ),
-                                              child: Center(
-                                                child: Text(
-                                                  "Donate",
-                                                  style: GoogleFonts.poppins(
-                                                    fontSize: 10,
-                                                    fontWeight: FontWeight.w700,
+                                          DummyData().events[index].donation
+                                              ? GestureDetector(
+                                                  onTap: () {
+                                                    Navigator.push(
+                                                        context,
+                                                        MaterialPageRoute(
+                                                            builder: (context) =>
+                                                                const TxnScreen()));
+                                                  },
+                                                  child: Container(
+                                                    height: 20,
+                                                    width: 70,
+                                                    decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              20),
+                                                      gradient:
+                                                          const LinearGradient(
+                                                        colors: [
+                                                          Color(0xFFE9573A),
+                                                          Color(0xFFFDC424),
+                                                        ],
+                                                        begin: Alignment
+                                                            .centerLeft,
+                                                        end: Alignment
+                                                            .centerRight,
+                                                      ),
+                                                    ),
+                                                    child: Center(
+                                                      child: Text(
+                                                        "Donate",
+                                                        style:
+                                                            GoogleFonts.poppins(
+                                                          fontSize: 10,
+                                                          fontWeight:
+                                                              FontWeight.w700,
+                                                        ),
+                                                      ),
+                                                    ),
                                                   ),
-                                                ),
-                                              ),
-                                            ),
-                                          ),
+                                                )
+                                              : Container(),
                                         ],
                                       ),
                                     ],
@@ -421,7 +430,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   width: 140,
                                   child: ClipRRect(
                                       borderRadius: BorderRadius.circular(15),
-                                      child: Image.asset(
+                                      child: Image.network(
                                         //TODO: Update the image url path with backend
                                         DummyData().events[index].imageLink,
                                         fit: BoxFit.cover,

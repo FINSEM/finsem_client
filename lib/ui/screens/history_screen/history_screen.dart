@@ -1,3 +1,4 @@
+import 'package:finsem_client/dummy_data/dummy_data.dart';
 import 'package:finsem_client/ui/component/curved_appbar.dart';
 import 'package:finsem_client/utils/colours.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +17,7 @@ class HistoryScreen extends StatelessWidget {
           color: FinColours.secondaryColor,
           child: Center(
             child: ListView.builder(
-                itemCount: 5,
+                itemCount: DummyData().txns.length,
                 itemBuilder: (BuildContext context, int index) {
                   return Column(
                     children: [
@@ -40,14 +41,14 @@ class HistoryScreen extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 Text(
-                                  "Maintenance Feb",
+                                  DummyData().txns[index].desc,
                                   style: GoogleFonts.montserrat(
                                     color: FinColours.grey,
                                     fontSize: 18,
                                   ),
                                 ),
                                 Text(
-                                  "Paid",
+                                  DummyData().txns[index].type,
                                   style: GoogleFonts.montserrat(
                                     color: FinColours.green,
                                     fontSize: 16,
@@ -60,13 +61,13 @@ class HistoryScreen extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 Text(
-                                  "₹ 14,000",
+                                  "₹ ${DummyData().txns[index].amount.toString()}",
                                   style: GoogleFonts.poppins(
                                       color: FinColours.secondaryTextColor,
                                       fontSize: 18),
                                 ),
                                 Text(
-                                  "16 Feb",
+                                  DummyData().txns[index].date,
                                   style: GoogleFonts.poppins(
                                       color: FinColours.secondaryTextColor,
                                       fontSize: 16),

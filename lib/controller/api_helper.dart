@@ -1,5 +1,5 @@
 import 'package:finsem_client/controller/api.dart';
-import 'package:finsem_client/model/cook_model.dart';
+import 'package:finsem_client/model/housekeeping_model.dart';
 import 'package:finsem_client/model/event_model.dart';
 import 'package:finsem_client/model/user_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -31,12 +31,12 @@ class ApiHelper extends GetxController {
     _loggedInUser.value = FirebaseUser.fromFirebase(user);
   }
 
-  static Future<List<Cook>> fetchCook() async {
-    RxList<Cook> cook = <Cook>[].obs;
-    var cookSnap = await Api.fetchCook();
-    for (var element in cookSnap) {
-      cook.add(Cook.fromMap(element.data()!));
+  static Future<List<HouseKeeping>> fetchHousekeeping() async {
+    RxList<HouseKeeping> hk = <HouseKeeping>[].obs;
+    var hkSnap = await Api.fetchHouseKeeping();
+    for (var element in hkSnap) {
+      hk.add(HouseKeeping.fromMap(element.data()!));
     }
-    return cook;
+    return hk;
   }
 }

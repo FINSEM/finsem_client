@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
     Get.put<TxnController>(TxnController());
     return ScreenUtilInit(
       designSize: const Size(360, 705),
-      builder: () => GetMaterialApp(
+      builder: (_, child) => GetMaterialApp(
         title: 'FinSEM',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
