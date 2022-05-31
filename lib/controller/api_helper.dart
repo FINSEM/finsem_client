@@ -17,6 +17,14 @@ class ApiHelper extends GetxController {
     return _events;
   }
 
+  static Future<List<Event>> fetchNotices() async {
+    var noticeSnap = await Api.fetchNotices();
+    for (var element in noticeSnap) {
+      _events.add(Event.fromMap(element.data()!));
+    }
+    return _events;
+  }
+
   static final Rx<FirebaseUser> _loggedInUser = FirebaseUser(
     name: '',
     add: '',

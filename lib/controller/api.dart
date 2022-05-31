@@ -1,10 +1,7 @@
 import 'dart:io';
-import 'dart:math';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:finsem_client/controller/api_helper.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:flutter/material.dart';
 import 'dart:developer' as debug;
 import 'package:path/path.dart' as path;
 
@@ -22,14 +19,25 @@ class Api {
   }
 
   static Future<List<DocumentSnapshot<Map<String, dynamic>>>>
+      fetchNotices() async {
+    var noticeSnap = await _db
+        .collection('Organizations')
+        .doc('tw2TPyM4WQgbLJ3w4hxAfGnc9JE2')
+        .collection('Events')
+        .get();
+    noticeSnap.docs;
+    return noticeSnap.docs;
+  }
+
+  static Future<List<DocumentSnapshot<Map<String, dynamic>>>>
       fetchHouseKeeping() async {
-    var cookSnap = await _db
+    var hkSnap = await _db
         .collection('Organizations')
         .doc('tw2TPyM4WQgbLJ3w4hxAfGnc9JE2')
         .collection('Cook')
         .get();
-    cookSnap.docs;
-    return cookSnap.docs;
+    hkSnap.docs;
+    return hkSnap.docs;
   }
 
   static Future<DocumentSnapshot<Map<String, dynamic>>> fetchUser(
