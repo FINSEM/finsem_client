@@ -49,10 +49,13 @@ class _CookScreenState extends State<CookScreen> {
                               maxLines: 1,
                             ),
                             const SizedBox(height: 5),
-                            Text(
-                              DummyData().houseKeeping[ind].desc,
-                              maxLines: 2,
-                              overflow: TextOverflow.ellipsis,
+                            Container(
+                              width: 260,
+                              child: Text(
+                                DummyData().houseKeeping[ind].desc,
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                              ),
                             ),
                           ],
                         ),

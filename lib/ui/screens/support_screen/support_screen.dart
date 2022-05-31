@@ -201,7 +201,7 @@ class _SupportScreenState extends State<SupportScreen> {
                             ),
                             const SizedBox(width: 12),
                             Text(
-                              "+91 9999999999",
+                              "+91 9926758761",
                               style: TextStyle(
                                   color: FinColours.secondaryTextColor,
                                   fontSize: 18),
