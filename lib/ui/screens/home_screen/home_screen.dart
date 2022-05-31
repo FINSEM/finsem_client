@@ -1,5 +1,6 @@
 import 'package:finsem_client/dummy_data/dummy_data.dart';
 import 'package:finsem_client/ui/screens/home_screen/event_view.dart';
+import 'package:finsem_client/ui/screens/home_screen/noticeView.dart';
 import 'package:finsem_client/ui/screens/profile_screen/show_profile.dart';
 import 'package:finsem_client/ui/screens/txn_screen/txn_screen.dart';
 import 'package:finsem_client/utils/colours.dart';
@@ -222,7 +223,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             context,
                             MaterialPageRoute(
                                 builder: (context) =>
-                                    const EventView(selectedEvent: 0)));
+                                    EventView(selectedEvent: index)));
                       },
                       child: Padding(
                         padding:
@@ -396,91 +397,83 @@ class _HomeScreenState extends State<HomeScreen> {
                     ],
                   ),
                 ),
-                SizedBox(
-                  height: 200.h,
-                  child: ListView.builder(
-                    physics: const BouncingScrollPhysics(),
-                    shrinkWrap: true,
-                    scrollDirection: Axis.horizontal,
+                CarouselSlider.builder(
+                  itemCount: DummyData().notice.length,
+                  options: CarouselOptions(
+                    aspectRatio: 5.5 / 3,
+                    viewportFraction: 0.8.h,
+                    autoPlayAnimationDuration: Duration(seconds: 3),
 
-                    //TODO: Update the list length with backend
-                    itemCount: DummyData().events.length,
-                    itemBuilder: (context, index) {
-                      return Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 8.0, vertical: 5.0),
-                        child: GestureDetector(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
+                    //autoPlayInterval = Duration(seconds: 4),
+                    // enlargeCenterPage: true,
+                    autoPlay: true,
+                  ),
+                  itemBuilder: (ctx, index, realIdx) {
+                    return GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
                                 builder: (context) =>
-                                    EventView(selectedEvent: index),
-                              ),
-                            );
-                          },
-                          child: Material(
-                            borderRadius: BorderRadius.circular(15),
-                            elevation: 5,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
+                                    NoticeView(selectedNotice: index)));
+                      },
+                      child: Padding(
+                        padding:
+                            const EdgeInsets.only(bottom: 7.0, right: 10.0),
+                        child: Material(
+                          borderRadius: BorderRadius.circular(10),
+                          elevation: 5,
+                          child: Container(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 5, vertical: 5),
+                            child: Row(
                               children: [
-                                SizedBox(
-                                  height: 120,
-                                  width: 140,
-                                  child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(15),
-                                      child: Image.network(
-                                        //TODO: Update the image url path with backend
-                                        DummyData().events[index].imageLink,
-                                        fit: BoxFit.cover,
+                                Container(
+                                  height: 150.h,
+                                  width: 100.h,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10),
+                                      image: DecorationImage(
+                                        image: AssetImage(
+                                            //TODO: Update the image url path with backend
+                                            DummyData()
+                                                .notice[index]
+                                                .imageLink),
+                                        fit: BoxFit.fill,
                                       )),
                                 ),
-                                Container(
-                                  padding:
-                                      const EdgeInsets.only(left: 10, top: 10),
-                                  width: 130,
+                                const SizedBox(width: 8),
+                                SizedBox(
+                                  width: 160.w,
                                   child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
                                       //TODO: pass event Title from backend
+                                      SizedBox(
+                                        height: 10,
+                                      ),
 
                                       Text(
-                                        DummyData().events[index].title,
-                                        style: GoogleFonts.roboto(
+                                        DummyData().notice[index].title,
+                                        style: GoogleFonts.poppins(
                                           color: FinColours.secondaryTextColor,
                                           fontSize: 14.0,
-                                          fontWeight: FontWeight.bold,
+                                          fontWeight: FontWeight.w700,
                                         ),
-                                        maxLines: 1,
+                                        maxLines: 2,
                                         overflow: TextOverflow.ellipsis,
                                       ),
-                                      Row(
-                                        children: [
-                                          Text(
-                                            //TODO: Update the time with backend
-                                            DummyData().events[index].date,
-                                            style: GoogleFonts.poppins(
-                                              color: FinColours.grey,
-                                              fontSize: 12,
-                                            ),
-                                            overflow: TextOverflow.ellipsis,
-                                          )
-                                        ],
-                                      ),
-                                      Row(
-                                        children: [
-                                          Text(
-                                            //TODO: Update the time with backend
-                                            DummyData().events[index].date,
-                                            style: GoogleFonts.poppins(
-                                              color: FinColours.grey,
-                                              fontSize: 12,
-                                            ),
-                                            overflow: TextOverflow.ellipsis,
-                                          )
-                                        ],
+                                      Text(
+                                        DummyData().notice[index].description,
+                                        style: GoogleFonts.roboto(
+                                          color: Colors.grey.shade800,
+                                          fontSize: 13.0,
+                                          fontWeight: FontWeight.w400,
+                                        ),
+                                        maxLines: 8,
+                                        overflow: TextOverflow.ellipsis,
                                       ),
                                     ],
                                   ),
@@ -489,10 +482,108 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                           ),
                         ),
-                      );
-                    },
-                  ),
+                      ),
+                    );
+                  },
                 ),
+                // Container(
+                //   height: 200.h,
+                //   width: 500,
+                //   child: ListView.builder(
+                //     physics: const BouncingScrollPhysics(),
+                //     shrinkWrap: true,
+                //     scrollDirection: Axis.horizontal,
+                //
+                //     //TODO: Update the list length with backend
+                //     itemCount: DummyData().notice.length,
+                //     itemBuilder: (context, index) {
+                //       return Padding(
+                //         padding: const EdgeInsets.symmetric(
+                //             horizontal: 8.0, vertical: 5.0),
+                //         child: GestureDetector(
+                //           onTap: () {
+                //             Navigator.push(
+                //               context,
+                //               MaterialPageRoute(
+                //                 builder: (context) =>
+                //                     EventView(selectedEvent: index),
+                //               ),
+                //             );
+                //           },
+                //           child: Material(
+                //             borderRadius: BorderRadius.circular(15),
+                //             elevation: 5,
+                //             child: Column(
+                //               crossAxisAlignment: CrossAxisAlignment.start,
+                //               children: [
+                //                 SizedBox(
+                //                   height: 120,
+                //                   width: 140,
+                //                   child: ClipRRect(
+                //                       borderRadius: BorderRadius.circular(15),
+                //                       child: Image.network(
+                //                         //TODO: Update the image url path with backend
+                //                         DummyData().events[index].imageLink,
+                //                         fit: BoxFit.cover,
+                //                       )),
+                //                 ),
+                //                 Container(
+                //                   padding:
+                //                       const EdgeInsets.only(left: 10, top: 10),
+                //                   width: 130,
+                //                   child: Column(
+                //                     crossAxisAlignment:
+                //                         CrossAxisAlignment.start,
+                //                     children: [
+                //                       //TODO: pass event Title from backend
+                //
+                //                       Text(
+                //                         DummyData().events[index].title,
+                //                         style: GoogleFonts.roboto(
+                //                           color: FinColours.secondaryTextColor,
+                //                           fontSize: 14.0,
+                //                           fontWeight: FontWeight.bold,
+                //                         ),
+                //                         maxLines: 1,
+                //                         overflow: TextOverflow.ellipsis,
+                //                       ),
+                //                       Row(
+                //                         children: [
+                //                           Text(
+                //                             //TODO: Update the time with backend
+                //                             DummyData().events[index].date,
+                //                             style: GoogleFonts.poppins(
+                //                               color: FinColours.grey,
+                //                               fontSize: 12,
+                //                             ),
+                //                             overflow: TextOverflow.ellipsis,
+                //                           )
+                //                         ],
+                //                       ),
+                //                       Row(
+                //                         children: [
+                //                           Text(
+                //                             //TODO: Update the time with backend
+                //                             DummyData().events[index].date,
+                //                             style: GoogleFonts.poppins(
+                //                               color: FinColours.grey,
+                //                               fontSize: 12,
+                //                             ),
+                //                             overflow: TextOverflow.ellipsis,
+                //                           )
+                //                         ],
+                //                       ),
+                //                     ],
+                //                   ),
+                //                 ),
+                //               ],
+                //             ),
+                //           ),
+                //         ),
+                //       );
+                //     },
+                //   ),
+                // ),
                 const SizedBox(height: 20),
               ],
             ),

@@ -1,5 +1,6 @@
 import 'package:finsem_client/model/event_model.dart';
 import 'package:finsem_client/model/housekeeping_model.dart';
+import 'package:finsem_client/model/notice_model.dart';
 import 'package:finsem_client/model/txn_model.dart';
 import 'package:get/get.dart';
 
@@ -148,7 +149,7 @@ class DummyData {
       gender: 'F',
     ),
     HouseKeeping(
-      name: 'Parvez qaiser',
+      name: 'Parvez H',
       age: 30,
       desc:
           'He is skilled, punctual and obedient cook. He cooks on basis on ur requirement or desire. Cooks kashmiri, Punjabi and mughlai dishes and having 2+ years experience',
@@ -167,5 +168,27 @@ class DummyData {
       mobile: '+919914170014',
       gender: 'M',
     ),
+  ].obs;
+  RxList<Notice> notice = [
+    Notice(
+        title: "Waste Management",
+        description:
+            "Wet waste is all the kitchen waste that we produce. This can include vegetable peels, used tea, fruits, leftovers, etc. This is biodegradable organic waste that can also be composted. Dry waste comprises paper, glass, plastic, cardboard, styrofoam, rubber, metal, food packaging material, etc. Even milk cartons and packets go into a dry waste bin. Dry waste is recyclable but will be rejected if it is contaminated or soiled.",
+        imageLink: "assets/images/waste.jpeg"),
+    Notice(
+        title: "Dont litter in Society Campus",
+        description:
+            "Litter pollutes the air as it decomposes, releasing unwanted chemicals into the air we breathe. Too much litter in a community can decrease the quality of air, impacting both our and our children's health. Disposing of waste correctly means that litter is kept away from thriving communities.",
+        imageLink: "assets/images/env.jpeg"),
+    Notice(
+        title: "Proper Attire in Swiming pool",
+        description:
+            "In order to gain entry into the pool area, you must be clothed in proper swim attire. Clean white t-shirts may be worn over proper swim attire. Colored t-shirts will not be allowed in the pool. All infants/toddlers that require a diaper must wear swimmer diapers and proper swimwear. Community pools are family friendly. All swim wear must be appropriate. Approved water shoes are permitted.",
+        imageLink: "assets/images/swim.jpeg"),
+    Notice(
+        title: "Please Pickup After pet",
+        description:
+            "Dog waste can contain bacteria, parasites, and pathogens that can directly and indirectly cause people to get sick. Although it may look like the poo in your yard has disappeared over time or washed away, some micro-organisms (such as Roundworms, E. coli, and Giardia) can persist and survive in your yard for up to four years if not picked up! Think of how often you use your backyards and lawns, and imagine what microscopic beasts could be proliferating there if the dog poo is left untouched.",
+        imageLink: "assets/images/dog.jpeg"),
   ].obs;
 }
