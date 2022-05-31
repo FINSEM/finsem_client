@@ -48,9 +48,7 @@ class _ReportIssueState extends State<ReportIssue> {
                     fontSize: 20,
                   ),
                 ),
-                const SizedBox(
-                  height: 10,
-                ),
+                const SizedBox(height: 10),
                 Container(
                   decoration: BoxDecoration(
                     border: Border.all(
@@ -80,18 +78,14 @@ class _ReportIssueState extends State<ReportIssue> {
                     ),
                   ),
                 ),
-                const SizedBox(
-                  height: 30,
-                ),
+                const SizedBox(height: 30),
                 const Text(
                   "Enter Your Comments",
                   style: TextStyle(
                     fontSize: 20,
                   ),
                 ),
-                const SizedBox(
-                  height: 10,
-                ),
+                const SizedBox(height: 10),
                 Container(
                   decoration: BoxDecoration(
                     border: Border.all(
