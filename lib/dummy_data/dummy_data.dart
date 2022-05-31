@@ -1,3 +1,4 @@
+import 'package:finsem_client/model/donation_model.dart';
 import 'package:finsem_client/model/event_model.dart';
 import 'package:finsem_client/model/housekeeping_model.dart';
 import 'package:finsem_client/model/notice_model.dart';
@@ -53,62 +54,89 @@ class DummyData {
       donation: false,
     ),
   ].obs;
+  RxList<Donation> donation = [
+    Donation(
+      title: "Kavi Sammelan",
+      description:
+          "Kavi Sammelan is a gathering of poets in the Hindi Belt of northern India. The participants recite their poetry to each other and have a general discussion on literary issues. This may take place among the poets but is mostly done before an audience.",
+      imageLink:
+          "https://res.cloudinary.com/dwzmsvp7f/image/fetch/q_75,f_auto,w_800/https%3A%2F%2Fmedia.insider.in%2Fimage%2Fupload%2Fc_crop%2Cg_custom%2Fv1519627962%2Fvltlogy23k1iid9pjffx.jpg",
+      location: "Orion Mall",
+      date: "15 August 2022",
+      time: "10Am-2Pm",
+      donation: true,
+      amountReq: 15000,
+    ),
+    Donation(
+      title: "Dussehra",
+      description:
+          "Vijayadashami (Sanskrit: विजयदशमी, romanized: Vijayadaśamī), also known as Dussehra, Dasara or Dashain, is a major Hindu festival celebrated at the end of Navaratri every year. It is observed on the tenth day in the Hindu calendar month of Ashvin, the seventh month of the Hindu Luni-Solar Calendar, which typically falls in the Gregorian months of September and October",
+      imageLink:
+          "https://i0.wp.com/www.jaipurstuff.com/wp-content/uploads/2019/10/1508168997_CoverPage-Dussehra.jpg.jpg?fit=956%2C535&ssl=1",
+      location: "Orion Mall",
+      date: "12 October 2022",
+      time: "10Am-2Pm",
+      donation: true,
+      amountReq: 13500,
+    ),
+  ].obs;
   RxList<Txn> txns = [
     Txn(
       id: '1513515131#1515',
+      amount: 3500,
+      desc: "Maintenance",
+      paidBy: 'lXRK6svHrwVCkrkGiGuckVJDF6H2',
+      orgId: "tw2TPyM4WQgbLJ3w4hxAfGnc9JE2",
+      type: 'Upi',
+      date: "22 May 2022",
+      time: "10:43 AM",
+      pyMode: "Upi",
+    ),
+    Txn(
+      id: 'TX3428653678578224',
       amount: 500,
       desc: "Kavi Sammelan",
       paidBy: 'lXRK6svHrwVCkrkGiGuckVJDF6H2',
       orgId: "tw2TPyM4WQgbLJ3w4hxAfGnc9JE2",
-      type: 'Donation',
-      date: "15 Jan",
-      time: "13:44",
+      type: 'Card',
+      date: "10 May 2022",
+      time: "09:15",
       pyMode: "Upi",
     ),
+
     Txn(
       id: '1513515131#1515',
-      amount: 50,
-      desc: "June payment",
+      amount: 3500,
+      desc: "Maintenance",
       paidBy: 'lXRK6svHrwVCkrkGiGuckVJDF6H2',
       orgId: "tw2TPyM4WQgbLJ3w4hxAfGnc9JE2",
-      type: 'Monthly',
-      date: "13 June",
-      time: "13:44",
+      type: 'Upi',
+      date: "10 Feb 2021",
+      time: "10:30",
       pyMode: "Upi",
     ),
-    Txn(
-      id: '1513515131#1515',
-      amount: 100,
-      desc: "May payment",
-      paidBy: 'lXRK6svHrwVCkrkGiGuckVJDF6H2',
-      orgId: "tw2TPyM4WQgbLJ3w4hxAfGnc9JE2",
-      type: 'Monthly',
-      date: "24 May 2021",
-      time: "13:44",
-      pyMode: "Upi",
-    ),
-    Txn(
-      id: '1513515131#1515',
-      amount: 2500,
-      desc: "Diwali",
-      paidBy: 'lXRK6svHrwVCkrkGiGuckVJDF6H2',
-      orgId: "tw2TPyM4WQgbLJ3w4hxAfGnc9JE2",
-      type: 'Donation',
-      date: "24 May",
-      time: "13:44",
-      pyMode: "Upi",
-    ),
-    Txn(
-      id: '1513515131#1515',
-      amount: 50,
-      desc: "April payment",
-      paidBy: 'lXRK6svHrwVCkrkGiGuckVJDF6H2',
-      orgId: "tw2TPyM4WQgbLJ3w4hxAfGnc9JE2",
-      type: 'Monthly',
-      date: "24 April",
-      time: "13:44",
-      pyMode: "Upi",
-    ),
+    // Txn(
+    //   id: '1513515131#1515',
+    //   amount: 2500,
+    //   desc: "Diwali",
+    //   paidBy: 'lXRK6svHrwVCkrkGiGuckVJDF6H2',
+    //   orgId: "tw2TPyM4WQgbLJ3w4hxAfGnc9JE2",
+    //   type: 'Donation',
+    //   date: "16 Feb 2022",
+    //   time: "13:44",
+    //   pyMode: "Upi",
+    // ),
+    // Txn(
+    //   id: '1513515131#1515',
+    //   amount: 50,
+    //   desc: "April payment",
+    //   paidBy: 'lXRK6svHrwVCkrkGiGuckVJDF6H2',
+    //   orgId: "tw2TPyM4WQgbLJ3w4hxAfGnc9JE2",
+    //   type: 'Monthly',
+    //   date: "24 April",
+    //   time: "13:44",
+    //   pyMode: "Upi",
+    // ),
   ].obs;
   RxList<HouseKeeping> houseKeeping = [
     HouseKeeping(

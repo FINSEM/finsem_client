@@ -1,7 +1,10 @@
 import 'package:finsem_client/dummy_data/dummy_data.dart';
+import 'package:finsem_client/ui/screens/txn_screen/txn_screen.dart';
 import 'package:finsem_client/utils/colours.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:line_icons/line_icons.dart';
 
 class EventView extends StatelessWidget {
@@ -177,6 +180,47 @@ class EventView extends StatelessWidget {
                               ),
                             ],
                           ),
+                        ],
+                      ),
+                      const SizedBox(height: 30),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          DummyData().events[selectedEvent].donation
+                              ? GestureDetector(
+                                  onTap: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                const TxnScreen()));
+                                  },
+                                  child: Container(
+                                    height: 40,
+                                    width: 130,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(20),
+                                      gradient: const LinearGradient(
+                                        colors: [
+                                          Color(0xFFE9573A),
+                                          Color(0xFFFDC424),
+                                        ],
+                                        begin: Alignment.centerLeft,
+                                        end: Alignment.centerRight,
+                                      ),
+                                    ),
+                                    child: Center(
+                                      child: Text(
+                                        "Donate",
+                                        style: GoogleFonts.poppins(
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.w700,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                )
+                              : Container(),
                         ],
                       ),
                     ],

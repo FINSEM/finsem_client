@@ -90,7 +90,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 const SizedBox(height: 20),
                 Container(
                   width: 300.w,
-                  height: 115.h,
+                  height: 124.h,
                   padding:
                       const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
                   decoration: BoxDecoration(
@@ -107,9 +107,16 @@ class _HomeScreenState extends State<HomeScreen> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: const [
                               Text(
+                                "Maintenance",
+                                style: TextStyle(
+                                  fontSize: 17,
+                                  color: Colors.redAccent,
+                                ),
+                              ),
+                              Text(
                                 "Due Amount",
                                 style: TextStyle(
-                                  fontSize: 18,
+                                  fontSize: 17,
                                   color: Colors.white,
                                 ),
                               ),
@@ -133,7 +140,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   color: Colors.white,
                                 ),
                               ),
-                              Text("7 Apr 2022",
+                              Text("7 June 2022",
                                   style: TextStyle(
                                     fontSize: 16,
                                     color: Colors.white,
@@ -180,7 +187,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ],
                   ),
                 ),
-                const SizedBox(height: 10),
+                const SizedBox(height: 5),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 10),
                   child: Row(
@@ -311,9 +318,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                             MainAxisAlignment.spaceBetween,
                                         children: [
                                           Text(
-                                            '2 months ago',
+                                            DummyData().events[index].date,
                                             style: GoogleFonts.poppins(
-                                              fontSize: 12,
+                                              fontSize: 10,
                                             ),
                                           ),
                                           DummyData().events[index].donation
