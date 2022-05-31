@@ -1,4 +1,12 @@
+import 'dart:io';
+import 'dart:math';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:finsem_client/controller/api_helper.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter/material.dart';
+import 'dart:developer' as debug;
+import 'package:path/path.dart' as path;
 
 class Api {
   static final FirebaseFirestore _db = FirebaseFirestore.instance;
@@ -28,5 +36,36 @@ class Api {
       String uid) async {
     var userSnap = await _db.collection('Users').doc(uid).get();
     return userSnap;
+  }
+
+  static Future<String> uploadImageToFirebase(File image) async {
+    String finalURL = '';
+    String fileName = path.basename(image.path);
+    Reference firebaseStorageRef =
+        FirebaseStorage.instance.ref().child('Issues/$fileName');
+    UploadTask uploadTask = firebaseStorageRef.putFile(File(image.path));
+    TaskSnapshot taskSnapshot = await uploadTask;
+    finalURL = await taskSnapshot.ref.getDownloadURL();
+    return finalURL;
+  }
+
+  static Future uploadIssue(String issueType, String desc, File image) async {
+    final uploadedImageURL = await uploadImageToFirebase(image);
+    DocumentReference dr =
+        FirebaseFirestore.instance.collection('Issues').doc();
+    debug.log(uploadedImageURL);
+    // await dr.update({
+    //   'feed_image_url': uploadedImageURL,
+    // });
+    await dr.set({
+      "orgUid": "tw2TPyM4WQgbLJ3w4hxAfGnc9JE2",
+      "userUid": ApiHelper.loggedInUser.value.uid,
+      "tBlockRoom": ApiHelper.loggedInUser.value.add,
+      "tType": issueType,
+      "tDesc": desc,
+      "tImg": uploadedImageURL,
+      "tstatus": "Under proccess",
+      "tID": "TK48154",
+    });
   }
 }
