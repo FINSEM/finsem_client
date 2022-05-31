@@ -24,7 +24,7 @@ class _DonationScreenState extends State<DonationScreen> {
           color: FinColours.secondaryColor,
           child: Center(
             child: ListView.builder(
-                physics: BouncingScrollPhysics(),
+                physics: const BouncingScrollPhysics(),
                 itemCount: DummyData().donation.length,
                 itemBuilder: (BuildContext context, int index) {
                   return GestureDetector(
@@ -51,11 +51,9 @@ class _DonationScreenState extends State<DonationScreen> {
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(10),
                                     image: DecorationImage(
-                                      image: NetworkImage(
-                                          //TODO: Update the image url path with backend
-                                          DummyData()
-                                              .donation[index]
-                                              .imageLink),
+                                      image: NetworkImage(DummyData()
+                                          .donation[index]
+                                          .imageLink),
                                       fit: BoxFit.fill,
                                     )),
                               ),
@@ -67,8 +65,6 @@ class _DonationScreenState extends State<DonationScreen> {
                                       MainAxisAlignment.spaceEvenly,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    //TODO: pass event Title from backend
-
                                     Text(
                                       DummyData().donation[index].title,
                                       style: GoogleFonts.poppins(
@@ -90,7 +86,6 @@ class _DonationScreenState extends State<DonationScreen> {
                                       overflow: TextOverflow.ellipsis,
                                     ),
                                     const SizedBox(height: 3),
-
                                     Row(
                                       children: [
                                         const Icon(
@@ -102,8 +97,6 @@ class _DonationScreenState extends State<DonationScreen> {
                                           width: 5,
                                         ),
                                         Text(
-                                          //TODO: Update the location with backend
-
                                           DummyData().donation[index].location,
                                           style: GoogleFonts.poppins(
                                             color: FinColours.grey,

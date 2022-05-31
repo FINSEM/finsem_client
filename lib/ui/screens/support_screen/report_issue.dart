@@ -243,7 +243,6 @@ class _ReportIssueState extends State<ReportIssue> {
   }
 
   _imgFromGallery() async {
-    final _picker = ImagePicker();
     //IF PERSON CANCELS THEN THE PATH WILL BE '' -- KEEP IN MIND
     XFile? image = (await _picker.pickImage(
           source: ImageSource.gallery,

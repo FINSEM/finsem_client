@@ -249,11 +249,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(10),
                                       image: DecorationImage(
-                                        image: NetworkImage(
-                                            //TODO: Update the image url path with backend
-                                            DummyData()
-                                                .events[index]
-                                                .imageLink),
+                                        image: NetworkImage(DummyData()
+                                            .events[index]
+                                            .imageLink),
                                         fit: BoxFit.fill,
                                       )),
                                 ),
@@ -266,8 +264,6 @@ class _HomeScreenState extends State<HomeScreen> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      //TODO: pass event Title from backend
-
                                       Text(
                                         DummyData().events[index].title,
                                         style: GoogleFonts.poppins(
@@ -289,7 +285,6 @@ class _HomeScreenState extends State<HomeScreen> {
                                         overflow: TextOverflow.ellipsis,
                                       ),
                                       const SizedBox(height: 3),
-
                                       Row(
                                         children: [
                                           const Icon(
@@ -301,8 +296,6 @@ class _HomeScreenState extends State<HomeScreen> {
                                             width: 5,
                                           ),
                                           Text(
-                                            //TODO: Update the location with backend
-
                                             DummyData().events[index].location,
                                             style: GoogleFonts.poppins(
                                               color: FinColours.grey,
@@ -409,7 +402,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   options: CarouselOptions(
                     aspectRatio: 5.5 / 3,
                     viewportFraction: 0.8.h,
-                    autoPlayAnimationDuration: Duration(seconds: 3),
+                    autoPlayAnimationDuration: const Duration(seconds: 3),
 
                     //autoPlayInterval = Duration(seconds: 4),
                     // enlargeCenterPage: true,
@@ -441,11 +434,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(10),
                                       image: DecorationImage(
-                                        image: AssetImage(
-                                            //TODO: Update the image url path with backend
-                                            DummyData()
-                                                .notice[index]
-                                                .imageLink),
+                                        image: AssetImage(DummyData()
+                                            .notice[index]
+                                            .imageLink),
                                         fit: BoxFit.fill,
                                       )),
                                 ),
@@ -457,11 +448,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      //TODO: pass event Title from backend
-                                      SizedBox(
+                                      const SizedBox(
                                         height: 10,
                                       ),
-
                                       Text(
                                         DummyData().notice[index].title,
                                         style: GoogleFonts.poppins(
@@ -493,104 +482,6 @@ class _HomeScreenState extends State<HomeScreen> {
                     );
                   },
                 ),
-                // Container(
-                //   height: 200.h,
-                //   width: 500,
-                //   child: ListView.builder(
-                //     physics: const BouncingScrollPhysics(),
-                //     shrinkWrap: true,
-                //     scrollDirection: Axis.horizontal,
-                //
-                //     //TODO: Update the list length with backend
-                //     itemCount: DummyData().notice.length,
-                //     itemBuilder: (context, index) {
-                //       return Padding(
-                //         padding: const EdgeInsets.symmetric(
-                //             horizontal: 8.0, vertical: 5.0),
-                //         child: GestureDetector(
-                //           onTap: () {
-                //             Navigator.push(
-                //               context,
-                //               MaterialPageRoute(
-                //                 builder: (context) =>
-                //                     EventView(selectedEvent: index),
-                //               ),
-                //             );
-                //           },
-                //           child: Material(
-                //             borderRadius: BorderRadius.circular(15),
-                //             elevation: 5,
-                //             child: Column(
-                //               crossAxisAlignment: CrossAxisAlignment.start,
-                //               children: [
-                //                 SizedBox(
-                //                   height: 120,
-                //                   width: 140,
-                //                   child: ClipRRect(
-                //                       borderRadius: BorderRadius.circular(15),
-                //                       child: Image.network(
-                //                         //TODO: Update the image url path with backend
-                //                         DummyData().events[index].imageLink,
-                //                         fit: BoxFit.cover,
-                //                       )),
-                //                 ),
-                //                 Container(
-                //                   padding:
-                //                       const EdgeInsets.only(left: 10, top: 10),
-                //                   width: 130,
-                //                   child: Column(
-                //                     crossAxisAlignment:
-                //                         CrossAxisAlignment.start,
-                //                     children: [
-                //                       //TODO: pass event Title from backend
-                //
-                //                       Text(
-                //                         DummyData().events[index].title,
-                //                         style: GoogleFonts.roboto(
-                //                           color: FinColours.secondaryTextColor,
-                //                           fontSize: 14.0,
-                //                           fontWeight: FontWeight.bold,
-                //                         ),
-                //                         maxLines: 1,
-                //                         overflow: TextOverflow.ellipsis,
-                //                       ),
-                //                       Row(
-                //                         children: [
-                //                           Text(
-                //                             //TODO: Update the time with backend
-                //                             DummyData().events[index].date,
-                //                             style: GoogleFonts.poppins(
-                //                               color: FinColours.grey,
-                //                               fontSize: 12,
-                //                             ),
-                //                             overflow: TextOverflow.ellipsis,
-                //                           )
-                //                         ],
-                //                       ),
-                //                       Row(
-                //                         children: [
-                //                           Text(
-                //                             //TODO: Update the time with backend
-                //                             DummyData().events[index].date,
-                //                             style: GoogleFonts.poppins(
-                //                               color: FinColours.grey,
-                //                               fontSize: 12,
-                //                             ),
-                //                             overflow: TextOverflow.ellipsis,
-                //                           )
-                //                         ],
-                //                       ),
-                //                     ],
-                //                   ),
-                //                 ),
-                //               ],
-                //             ),
-                //           ),
-                //         ),
-                //       );
-                //     },
-                //   ),
-                // ),
                 const SizedBox(height: 20),
               ],
             ),

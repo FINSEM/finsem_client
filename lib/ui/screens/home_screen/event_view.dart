@@ -1,7 +1,6 @@
 import 'package:finsem_client/dummy_data/dummy_data.dart';
 import 'package:finsem_client/ui/screens/txn_screen/txn_screen.dart';
 import 'package:finsem_client/utils/colours.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -23,10 +22,7 @@ class EventView extends StatelessWidget {
             child: ClipRRect(
                 //borderRadius: BorderRadius.circular(20),
                 child: FittedBox(
-              //TODO: Network IMAGE
-              child: Image.network(
-                  //TODO: Update the image url path with backend
-                  DummyData().events[selectedEvent].imageLink),
+              child: Image.network(DummyData().events[selectedEvent].imageLink),
               fit: BoxFit.fill,
             )),
           ),

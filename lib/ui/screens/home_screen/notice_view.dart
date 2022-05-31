@@ -1,9 +1,7 @@
 import 'package:finsem_client/dummy_data/dummy_data.dart';
 import 'package:finsem_client/utils/colours.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:line_icons/line_icons.dart';
 
 class NoticeView extends StatelessWidget {
   final int selectedNotice;
@@ -18,12 +16,8 @@ class NoticeView extends StatelessWidget {
             width: 360.w,
             height: 250.h,
             child: ClipRRect(
-                //borderRadius: BorderRadius.circular(20),
                 child: FittedBox(
-              //TODO: Network IMAGE
-              child: Image.asset(
-                  //TODO: Update the image url path with backend
-                  DummyData().notice[selectedNotice].imageLink),
+              child: Image.asset(DummyData().notice[selectedNotice].imageLink),
               fit: BoxFit.fill,
             )),
           ),
