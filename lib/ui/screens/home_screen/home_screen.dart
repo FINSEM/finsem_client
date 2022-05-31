@@ -1,6 +1,6 @@
 import 'package:finsem_client/dummy_data/dummy_data.dart';
 import 'package:finsem_client/ui/screens/home_screen/event_view.dart';
-import 'package:finsem_client/ui/screens/home_screen/noticeView.dart';
+import 'package:finsem_client/ui/screens/home_screen/notice_view.dart';
 import 'package:finsem_client/ui/screens/profile_screen/show_profile.dart';
 import 'package:finsem_client/ui/screens/txn_screen/txn_screen.dart';
 import 'package:finsem_client/utils/colours.dart';
