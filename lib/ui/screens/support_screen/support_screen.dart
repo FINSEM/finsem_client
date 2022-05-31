@@ -1,6 +1,7 @@
 import 'package:finsem_client/ui/component/curved_appbar.dart';
 import 'package:finsem_client/ui/screens/service_screen/housekeeping_screen.dart';
 import 'package:finsem_client/ui/screens/support_screen/report_issue.dart';
+import 'package:finsem_client/ui/screens/support_screen/track_issue.dart';
 import 'package:finsem_client/utils/colours.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -67,26 +68,35 @@ class _SupportScreenState extends State<SupportScreen> {
                     ),
                   ),
                   const SizedBox(height: 5),
-                  SizedBox(
-                    width: 320.w,
-                    height: 45.h,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          "Track My Tickets",
-                          style: GoogleFonts.montserrat(
-                              fontSize: 18, fontWeight: FontWeight.w500),
-                        ),
-                        const SizedBox(
-                          width: 30,
-                        ),
-                        const Icon(
-                          Icons.navigate_next,
-                          size: 40,
-                          color: Colors.red,
-                        )
-                      ],
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const TrackIssues()));
+                    },
+                    child: SizedBox(
+                      //TrackIssues
+                      width: 320.w,
+                      height: 45.h,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "Track My Tickets",
+                            style: GoogleFonts.montserrat(
+                                fontSize: 18, fontWeight: FontWeight.w500),
+                          ),
+                          const SizedBox(
+                            width: 30,
+                          ),
+                          const Icon(
+                            Icons.navigate_next,
+                            size: 40,
+                            color: Colors.red,
+                          )
+                        ],
+                      ),
                     ),
                   ),
                   const SizedBox(height: 20),
