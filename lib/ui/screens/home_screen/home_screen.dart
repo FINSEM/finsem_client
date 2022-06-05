@@ -273,7 +273,6 @@ class _HomeScreenState extends State<HomeScreen> {
                                                     fit: BoxFit.fill,
                                                   )),
                                             ),
-<<<<<<< HEAD
                                             const SizedBox(width: 15),
                                             SizedBox(
                                               width: 160.w,
@@ -299,9 +298,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                                         TextOverflow.ellipsis,
                                                   ),
                                                   Text(
-                                                    DummyData()
-                                                        .events[index]
-                                                        .description,
+                                                    snap.data![index]
+                                                        .data()!['desc'],
                                                     style: GoogleFonts.roboto(
                                                       color:
                                                           Colors.grey.shade800,
@@ -326,9 +324,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                                         width: 5,
                                                       ),
                                                       Text(
-                                                        DummyData()
-                                                            .events[index]
-                                                            .location,
+                                                        snap.data![index]
+                                                                .data()![
+                                                            'location'],
                                                         style:
                                                             GoogleFonts.poppins(
                                                           color:
@@ -336,104 +334,6 @@ class _HomeScreenState extends State<HomeScreen> {
                                                           fontSize: 12,
                                                           fontWeight:
                                                               FontWeight.w600,
-=======
-                                            Text(
-                                              snap.data![index].data()!['desc'],
-                                              // DummyData()
-                                              //     .events[index]
-                                              //     .description,
-
-                                              style: GoogleFonts.roboto(
-                                                color: Colors.grey.shade800,
-                                                fontSize: 13.0,
-                                                fontWeight: FontWeight.w400,
-                                              ),
-                                              maxLines: 2,
-                                              overflow: TextOverflow.ellipsis,
-                                            ),
-                                            const SizedBox(height: 3),
-                                            Row(
-                                              children: [
-                                                const Icon(
-                                                  LineIcons.mapMarker,
-                                                  color: Color(0xffe77c42),
-                                                  size: 16,
-                                                ),
-                                                const SizedBox(
-                                                  width: 5,
-                                                ),
-                                                Text(
-                                                  snap.data![index]
-                                                      .data()!['location'],
-                                                  style: GoogleFonts.poppins(
-                                                    color: FinColours.grey,
-                                                    fontSize: 12,
-                                                    fontWeight: FontWeight.w600,
-                                                  ),
-                                                  overflow:
-                                                      TextOverflow.ellipsis,
-                                                )
-                                              ],
-                                            ),
-                                            Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              children: [
-                                                Text(
-                                                  "${snap.data![index].data()!['date']}",
-                                                  //  ${snap.data![index].data()!['Time']}
-                                                  style: GoogleFonts.poppins(
-                                                    fontSize: 10,
-                                                  ),
-                                                ),
-                                                snap.data![index]
-                                                        .data()!['donation']
-                                                    ? GestureDetector(
-                                                        onTap: () {
-                                                          Navigator.push(
-                                                              context,
-                                                              MaterialPageRoute(
-                                                                  builder:
-                                                                      (context) =>
-                                                                          const TxnScreen()));
-                                                        },
-                                                        child: Container(
-                                                          height: 20,
-                                                          width: 70,
-                                                          decoration:
-                                                              BoxDecoration(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        20),
-                                                            gradient:
-                                                                const LinearGradient(
-                                                              colors: [
-                                                                Color(
-                                                                    0xFFE9573A),
-                                                                Color(
-                                                                    0xFFFDC424),
-                                                              ],
-                                                              begin: Alignment
-                                                                  .centerLeft,
-                                                              end: Alignment
-                                                                  .centerRight,
-                                                            ),
-                                                          ),
-                                                          child: Center(
-                                                            child: Text(
-                                                              "Donate",
-                                                              style: GoogleFonts
-                                                                  .poppins(
-                                                                fontSize: 10,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w700,
-                                                              ),
-                                                            ),
-                                                          ),
->>>>>>> d5c2d5a5b88181829d9bd004c7c02465d58a18ea
                                                         ),
                                                         overflow: TextOverflow
                                                             .ellipsis,
@@ -446,17 +346,15 @@ class _HomeScreenState extends State<HomeScreen> {
                                                             .spaceBetween,
                                                     children: [
                                                       Text(
-                                                        DummyData()
-                                                            .events[index]
-                                                            .date,
+                                                        snap.data![index]
+                                                            .data()!['date'],
                                                         style:
                                                             GoogleFonts.poppins(
                                                           fontSize: 10,
                                                         ),
                                                       ),
-                                                      DummyData()
-                                                              .events[index]
-                                                              .donation
+                                                      snap.data![index].data()![
+                                                              'donation']
                                                           ? GestureDetector(
                                                               onTap: () {
                                                                 Navigator.push(
@@ -549,104 +447,91 @@ class _HomeScreenState extends State<HomeScreen> {
                     ],
                   ),
                 ),
-                FutureBuilder<List<DocumentSnapshot<Map<String, dynamic>>>>(
-                    future: Api.fetchNotices(),
-                    builder: (context, snap) {
-                      if (snap.connectionState == ConnectionState.waiting) {
-                        return const Center(
-                          child: CircularProgressIndicator(),
-                        );
-                      }
-                      return CarouselSlider.builder(
-                        itemCount: snap.data!.length,
-                        options: CarouselOptions(
-                          aspectRatio: 5.5 / 3,
-                          viewportFraction: 0.8.h,
-                          autoPlayAnimationDuration: const Duration(seconds: 3),
+                CarouselSlider.builder(
+                  itemCount: DummyData().notice.length,
+                  options: CarouselOptions(
+                    aspectRatio: 5.5 / 3,
+                    viewportFraction: 0.8.h,
+                    autoPlayAnimationDuration: const Duration(seconds: 3),
 
-                          //autoPlayInterval = Duration(seconds: 4),
-                          // enlargeCenterPage: true,
-                          autoPlay: true,
-                        ),
-                        itemBuilder: (ctx, index, realIdx) {
-                          return GestureDetector(
-                            onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          NoticeView(selectedNotice: index)));
-                            },
-                            child: Padding(
-                              padding: const EdgeInsets.only(
-                                  bottom: 7.0, right: 10.0),
-                              child: Material(
-                                borderRadius: BorderRadius.circular(10),
-                                elevation: 5,
-                                child: Container(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 5, vertical: 5),
-                                  child: Row(
+                    //autoPlayInterval = Duration(seconds: 4),
+                    // enlargeCenterPage: true,
+                    autoPlay: true,
+                  ),
+                  itemBuilder: (ctx, index, realIdx) {
+                    return GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    NoticeView(selectedNotice: index)));
+                      },
+                      child: Padding(
+                        padding:
+                            const EdgeInsets.only(bottom: 7.0, right: 10.0),
+                        child: Material(
+                          borderRadius: BorderRadius.circular(10),
+                          elevation: 5,
+                          child: Container(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 5, vertical: 5),
+                            child: Row(
+                              children: [
+                                Container(
+                                  height: 150.h,
+                                  width: 100.h,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10),
+                                      image: DecorationImage(
+                                        image: AssetImage(DummyData()
+                                            .notice[index]
+                                            .imageLink),
+                                        fit: BoxFit.fill,
+                                      )),
+                                ),
+                                const SizedBox(width: 8),
+                                SizedBox(
+                                  width: 160.w,
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
-                                      Container(
-                                        height: 150.h,
-                                        width: 100.h,
-                                        decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(10),
-                                            image: DecorationImage(
-                                              image: NetworkImage(snap
-                                                  .data![index]
-                                                  .data()!['imageLink']),
-                                              fit: BoxFit.fill,
-                                            )),
+                                      const SizedBox(
+                                        height: 10,
                                       ),
-                                      const SizedBox(width: 8),
-                                      SizedBox(
-                                        width: 160.w,
-                                        child: Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.start,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            const SizedBox(
-                                              height: 10,
-                                            ),
-                                            Text(
-                                              snap.data![index]
-                                                  .data()!['title'],
-                                              style: GoogleFonts.poppins(
-                                                color: FinColours
-                                                    .secondaryTextColor,
-                                                fontSize: 14.0,
-                                                fontWeight: FontWeight.w700,
-                                              ),
-                                              maxLines: 2,
-                                              overflow: TextOverflow.ellipsis,
-                                            ),
-                                            Text(
-                                              snap.data![index].data()!['desc'],
-                                              style: GoogleFonts.roboto(
-                                                color: Colors.grey.shade800,
-                                                fontSize: 13.0,
-                                                fontWeight: FontWeight.w400,
-                                              ),
-                                              maxLines: 8,
-                                              overflow: TextOverflow.ellipsis,
-                                            ),
-                                          ],
+                                      Text(
+                                        DummyData().notice[index].title,
+                                        style: GoogleFonts.poppins(
+                                          color: FinColours.secondaryTextColor,
+                                          fontSize: 14.0,
+                                          fontWeight: FontWeight.w700,
                                         ),
+                                        maxLines: 2,
+                                        overflow: TextOverflow.ellipsis,
+                                      ),
+                                      Text(
+                                        DummyData().notice[index].description,
+                                        style: GoogleFonts.roboto(
+                                          color: Colors.grey.shade800,
+                                          fontSize: 13.0,
+                                          fontWeight: FontWeight.w400,
+                                        ),
+                                        maxLines: 8,
+                                        overflow: TextOverflow.ellipsis,
                                       ),
                                     ],
                                   ),
                                 ),
-                              ),
+                              ],
                             ),
-                          );
-                        },
-                      );
-                    }),
+                          ),
+                        ),
+                      ),
+                    );
+                  },
+                ),
                 const SizedBox(height: 20),
               ],
             ),

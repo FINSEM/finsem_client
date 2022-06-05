@@ -19,20 +19,20 @@ class NoticeView extends StatelessWidget {
                 child: CircularProgressIndicator(),
               );
             }
-            return Stack(
-              children: [
-                SizedBox(
-                  width: 360.w,
-                  height: 250.h,
-                  child: ClipRRect(
-                      child: FittedBox(
-                    child: Image.network(
-                        snap.data![selectedNotice].data()!['imageLink']),
-                    fit: BoxFit.fill,
-                  )),
-                ),
-                SafeArea(
-                  child: Padding(
+            return SafeArea(
+              child: Stack(
+                children: [
+                  SizedBox(
+                    width: 360.w,
+                    height: 420.h,
+                    child: ClipRRect(
+                        child: FittedBox(
+                      child: Image.network(
+                          snap.data![selectedNotice].data()!['imageLink']),
+                      fit: BoxFit.fill,
+                    )),
+                  ),
+                  Padding(
                     padding: const EdgeInsets.fromLTRB(15, 8, 15, 8),
                     child: Row(
                       children: [
@@ -55,57 +55,57 @@ class NoticeView extends StatelessWidget {
                       ],
                     ),
                   ),
-                ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Container(
-                      padding: const EdgeInsets.fromLTRB(8, 3, 8, 8),
-                      height: 480.h,
-                      width: 360.w,
-                      decoration: const BoxDecoration(
-                          color: Color(0xFFffffff),
-                          borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(20),
-                              topRight: Radius.circular(20))),
-                      child: SingleChildScrollView(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Center(
-                              child: SizedBox(
-                                width: 80.h,
-                                child: const Divider(thickness: 2),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Container(
+                        padding: const EdgeInsets.fromLTRB(15, 3, 15, 8),
+                        height: 350.h,
+                        width: 360.w,
+                        decoration: const BoxDecoration(
+                            color: Color(0xFFffffff),
+                            borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(20),
+                                topRight: Radius.circular(20))),
+                        child: SingleChildScrollView(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Center(
+                                child: SizedBox(
+                                  width: 80.h,
+                                  child: const Divider(thickness: 2),
+                                ),
                               ),
-                            ),
-                            const SizedBox(height: 20),
-                            Text(
-                              snap.data![selectedNotice].data()!['title'],
-                              style: TextStyle(
+                              const SizedBox(height: 20),
+                              Text(
+                                snap.data![selectedNotice].data()!['title'],
+                                style: TextStyle(
+                                    color: FinColours.secondaryTextColor,
+                                    fontSize: 32.0,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                              const SizedBox(
+                                height: 20,
+                              ),
+                              const SizedBox(height: 10),
+                              Text(
+                                snap.data![selectedNotice].data()!['desc'],
+                                style: TextStyle(
                                   color: FinColours.secondaryTextColor,
-                                  fontSize: 32.0,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                            const SizedBox(
-                              height: 20,
-                            ),
-                            const SizedBox(height: 10),
-                            Text(
-                              snap.data![selectedNotice].data()!['desc'],
-                              style: TextStyle(
-                                color: FinColours.secondaryTextColor,
-                                fontSize: 15.0,
-                                fontWeight: FontWeight.w300,
+                                  fontSize: 15.0,
+                                  fontWeight: FontWeight.w300,
+                                ),
                               ),
-                            ),
-                            const SizedBox(height: 12),
-                          ],
+                              const SizedBox(height: 12),
+                            ],
+                          ),
                         ),
                       ),
-                    ),
-                  ],
-                )
-              ],
+                    ],
+                  )
+                ],
+              ),
             );
           }),
     );
