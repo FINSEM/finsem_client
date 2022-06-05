@@ -109,6 +109,7 @@ class Api {
       "orgUid": ApiHelper.loggedInUser.value.org.oID,
       "userUid": ApiHelper.loggedInUser.value.uid,
       "tBlockRoom": ApiHelper.loggedInUser.value.add,
+      "pName": ApiHelper.loggedInUser.value.name,
       "pType": paymentType,
       "amount": amount,
       "tDesc": desc,
