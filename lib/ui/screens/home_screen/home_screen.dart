@@ -11,6 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
@@ -22,6 +23,14 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  DateTime now = DateTime.now();
+  DateTime? lastday;
+  @override
+  void initState() {
+    lastday = DateTime(now.year, now.month + 1, 0);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -135,16 +144,19 @@ class _HomeScreenState extends State<HomeScreen> {
                           Column(
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.end,
-                            children: const [
-                              Text(
+                            children: [
+                              const Text(
                                 "Due Date",
                                 style: TextStyle(
                                   fontSize: 18,
                                   color: Colors.white,
                                 ),
                               ),
-                              Text("7 June 2022",
-                                  style: TextStyle(
+                              Text(
+                                  DateFormat('dd MMMM yyyy')
+                                      .format(lastday!)
+                                      .toString(),
+                                  style: const TextStyle(
                                     fontSize: 16,
                                     color: Colors.white,
                                   )),
