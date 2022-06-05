@@ -61,7 +61,7 @@ class Api {
   static Stream<QuerySnapshot<Map<String, dynamic>>> fetchServices() {
     var serviceSnap = _db
         .collection('Organizations')
-        .doc('tw2TPyM4WQgbLJ3w4hxAfGnc9JE2')
+        .doc(ApiHelper.loggedInUser.value.org.oID)
         .collection('Services')
         .snapshots();
     return serviceSnap;
@@ -103,7 +103,7 @@ class Api {
   static Future uploadTxn(String paymentType, String desc, num amount) async {
     Random _random = Random();
     DocumentReference dr =
-        FirebaseFirestore.instance.collection('Transaction').doc();
+        FirebaseFirestore.instance.collection('Transactions').doc();
 
     await dr.set({
       "orgUid": ApiHelper.loggedInUser.value.org.oID,
@@ -115,5 +115,15 @@ class Api {
       "time": DateTime.now().millisecondsSinceEpoch,
       "tID": "TNX${_random.nextInt(1000000000)}",
     });
+    ApiHelper.loggedInUser.value.totalPending =
+        ApiHelper.loggedInUser.value.totalPending - amount;
+
+    var usersnap = await FirebaseFirestore.instance
+        .collection('Users')
+        .doc(ApiHelper.loggedInUser.value.uid)
+        .get();
+
+    usersnap.reference.update(
+        {'total_pending': ApiHelper.loggedInUser.value.totalPending - amount});
   }
 }

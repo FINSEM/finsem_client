@@ -41,7 +41,7 @@ class _TxnScreenState extends State<TxnScreen> {
   }
 
   void _handlePaymentSuccess(PaymentSuccessResponse response) {
-    Api.uploadTxn(widget.isDonation ? 'Transaction' : 'Donation',
+    Api.uploadTxn(widget.isDonation ? 'Donation' : 'Transaction',
         _mssgController!.text, int.parse(_amountController!.text));
     Navigator.pop(context);
     Navigator.push(context,

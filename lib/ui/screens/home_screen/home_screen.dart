@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:finsem_client/controller/api.dart';
 import 'package:finsem_client/controller/api_helper.dart';
-import 'package:finsem_client/dummy_data/dummy_data.dart';
 import 'package:finsem_client/ui/screens/home_screen/event_view.dart';
 import 'package:finsem_client/ui/screens/home_screen/notice_view.dart';
 import 'package:finsem_client/ui/screens/profile_screen/show_profile.dart';
@@ -109,28 +108,28 @@ class _HomeScreenState extends State<HomeScreen> {
                           Column(
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.start,
-                            children: const [
-                              Text(
+                            children: [
+                              const Text(
                                 "Maintenance",
                                 style: TextStyle(
                                   fontSize: 17,
                                   color: Colors.redAccent,
                                 ),
                               ),
-                              Text(
+                              const Text(
                                 "Due Amount",
                                 style: TextStyle(
                                   fontSize: 17,
                                   color: Colors.white,
                                 ),
                               ),
-                              Text(
-                                "₹ ${"3500"}",
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  color: Colors.white,
-                                ),
-                              )
+                              Obx(() => Text(
+                                    "₹ ${ApiHelper.loggedInUser.value.totalPending}",
+                                    style: const TextStyle(
+                                      fontSize: 16,
+                                      color: Colors.white,
+                                    ),
+                                  ))
                             ],
                           ),
                           Column(
@@ -447,90 +446,118 @@ class _HomeScreenState extends State<HomeScreen> {
                     ],
                   ),
                 ),
-                CarouselSlider.builder(
-                  itemCount: DummyData().notice.length,
-                  options: CarouselOptions(
-                    aspectRatio: 5.5 / 3,
-                    viewportFraction: 0.8.h,
-                    autoPlayAnimationDuration: const Duration(seconds: 3),
+                Obx(
+                  () => ApiHelper.loggedInUser.value.org.oID != ""
+                      ? FutureBuilder<
+                              List<DocumentSnapshot<Map<String, dynamic>>>>(
+                          future: Api.fetchNotices(),
+                          builder: (context, snap) {
+                            if (snap.connectionState ==
+                                ConnectionState.waiting) {
+                              return const Center(
+                                child: CircularProgressIndicator(),
+                              );
+                            }
+                            return CarouselSlider.builder(
+                              itemCount: snap.data!.length,
+                              options: CarouselOptions(
+                                aspectRatio: 5.5 / 3,
+                                viewportFraction: 0.8.h,
+                                autoPlayAnimationDuration:
+                                    const Duration(seconds: 3),
 
-                    //autoPlayInterval = Duration(seconds: 4),
-                    // enlargeCenterPage: true,
-                    autoPlay: true,
-                  ),
-                  itemBuilder: (ctx, index, realIdx) {
-                    return GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>
-                                    NoticeView(selectedNotice: index)));
-                      },
-                      child: Padding(
-                        padding:
-                            const EdgeInsets.only(bottom: 7.0, right: 10.0),
-                        child: Material(
-                          borderRadius: BorderRadius.circular(10),
-                          elevation: 5,
-                          child: Container(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 5, vertical: 5),
-                            child: Row(
-                              children: [
-                                Container(
-                                  height: 150.h,
-                                  width: 100.h,
-                                  decoration: BoxDecoration(
+                                //autoPlayInterval = Duration(seconds: 4),
+                                // enlargeCenterPage: true,
+                                autoPlay: true,
+                              ),
+                              itemBuilder: (ctx, index, realIdx) {
+                                return GestureDetector(
+                                  onTap: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => NoticeView(
+                                                selectedNotice: index)));
+                                  },
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(
+                                        bottom: 7.0, right: 10.0),
+                                    child: Material(
                                       borderRadius: BorderRadius.circular(10),
-                                      image: DecorationImage(
-                                        image: AssetImage(DummyData()
-                                            .notice[index]
-                                            .imageLink),
-                                        fit: BoxFit.fill,
-                                      )),
-                                ),
-                                const SizedBox(width: 8),
-                                SizedBox(
-                                  width: 160.w,
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      const SizedBox(
-                                        height: 10,
-                                      ),
-                                      Text(
-                                        DummyData().notice[index].title,
-                                        style: GoogleFonts.poppins(
-                                          color: FinColours.secondaryTextColor,
-                                          fontSize: 14.0,
-                                          fontWeight: FontWeight.w700,
+                                      elevation: 5,
+                                      child: Container(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 5, vertical: 5),
+                                        child: Row(
+                                          children: [
+                                            Container(
+                                              height: 150.h,
+                                              width: 100.h,
+                                              decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(10),
+                                                  image: DecorationImage(
+                                                    image: NetworkImage(snap
+                                                        .data![index]
+                                                        .data()!['imageLink']),
+                                                    fit: BoxFit.fill,
+                                                  )),
+                                            ),
+                                            const SizedBox(width: 8),
+                                            SizedBox(
+                                              width: 160.w,
+                                              child: Column(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.start,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  const SizedBox(
+                                                    height: 10,
+                                                  ),
+                                                  Text(
+                                                    snap.data![index]
+                                                        .data()!['title'],
+                                                    style: GoogleFonts.poppins(
+                                                      color: FinColours
+                                                          .secondaryTextColor,
+                                                      fontSize: 14.0,
+                                                      fontWeight:
+                                                          FontWeight.w700,
+                                                    ),
+                                                    maxLines: 2,
+                                                    overflow:
+                                                        TextOverflow.ellipsis,
+                                                  ),
+                                                  Text(
+                                                    snap.data![index]
+                                                        .data()!['desc'],
+                                                    style: GoogleFonts.roboto(
+                                                      color:
+                                                          Colors.grey.shade800,
+                                                      fontSize: 13.0,
+                                                      fontWeight:
+                                                          FontWeight.w400,
+                                                    ),
+                                                    maxLines: 8,
+                                                    overflow:
+                                                        TextOverflow.ellipsis,
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ],
                                         ),
-                                        maxLines: 2,
-                                        overflow: TextOverflow.ellipsis,
                                       ),
-                                      Text(
-                                        DummyData().notice[index].description,
-                                        style: GoogleFonts.roboto(
-                                          color: Colors.grey.shade800,
-                                          fontSize: 13.0,
-                                          fontWeight: FontWeight.w400,
-                                        ),
-                                        maxLines: 8,
-                                        overflow: TextOverflow.ellipsis,
-                                      ),
-                                    ],
+                                    ),
                                   ),
-                                ),
-                              ],
-                            ),
-                          ),
+                                );
+                              },
+                            );
+                          })
+                      : const Center(
+                          child: CircularProgressIndicator(color: Colors.black),
                         ),
-                      ),
-                    );
-                  },
                 ),
                 const SizedBox(height: 20),
               ],

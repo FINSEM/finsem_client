@@ -11,6 +11,7 @@ class EventView extends StatelessWidget {
   final int selectedEvent;
 
   const EventView({Key? key, required this.selectedEvent}) : super(key: key);
+//DummyData().events[selectedEvent].title
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,14 +26,14 @@ class EventView extends StatelessWidget {
             return Stack(
               children: [
                 SizedBox(
-                  width: 360.w,
-                  height: 400.h,
+                  width: 400.w,
+                  height: 250.h,
                   child: ClipRRect(
                       //borderRadius: BorderRadius.circular(20),
                       child: FittedBox(
                     child: Image.network(
                         snap.data![selectedEvent].data()!['imgUrl']),
-                    fit: BoxFit.cover,
+                    fit: BoxFit.fill,
                   )),
                 ),
                 SafeArea(
@@ -64,7 +65,7 @@ class EventView extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     Container(
-                      padding: const EdgeInsets.fromLTRB(15, 3, 15, 8),
+                      padding: const EdgeInsets.fromLTRB(8, 3, 8, 8),
                       height: 400.h,
                       width: 360.w,
                       decoration: const BoxDecoration(
@@ -109,10 +110,29 @@ class EventView extends StatelessWidget {
                                 fontWeight: FontWeight.w300,
                               ),
                             ),
-                            const SizedBox(height: 30),
+                            const SizedBox(height: 20),
                             Row(
                               children: [
-                                const SizedBox(width: 15),
+                                ClipOval(
+                                  child: Material(
+                                    color:
+                                        const Color(0xfff4e5df), // Button color
+                                    child: InkWell(
+                                      //splashColor: Colors.red, // Splash color
+                                      onTap: () {},
+                                      child: const SizedBox(
+                                          width: 45,
+                                          height: 45,
+                                          child: Icon(
+                                            LineIcons.mapMarker,
+                                            color: Color(0xffe77c42),
+                                          )),
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(
+                                  width: 15,
+                                ),
                                 Text(
                                   snap.data![selectedEvent].data()!['location'],
                                   overflow: TextOverflow.ellipsis,
@@ -124,6 +144,7 @@ class EventView extends StatelessWidget {
                                 ),
                               ],
                             ),
+                            const SizedBox(height: 12),
                             Row(
                               children: [
                                 ClipOval(
@@ -212,13 +233,12 @@ class EventView extends StatelessWidget {
                                     : Container(),
                               ],
                             ),
-                            const SizedBox(height: 12),
                           ],
                         ),
                       ),
                     ),
                   ],
-                ),
+                )
               ],
             );
           }),

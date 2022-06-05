@@ -6,6 +6,7 @@ class FirebaseUser {
   final String email;
   final String uid;
   final String add;
+  num totalPending;
   final Organization org;
 
   FirebaseUser({
@@ -14,6 +15,7 @@ class FirebaseUser {
     required this.add,
     required this.bio,
     required this.uid,
+    required this.totalPending,
     required this.org,
   });
 
@@ -24,6 +26,7 @@ class FirebaseUser {
       email: user.data()!['email'],
       add: user.data()!['block'],
       bio: user.data()!['bio'],
+      totalPending: user.data()!['total_pending'],
       uid: user.id,
       org: Organization.fromFirebase(user.data()!['org']),
     );

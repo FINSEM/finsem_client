@@ -31,6 +31,7 @@ class ApiHelper extends GetxController {
     email: '',
     bio: '',
     uid: '',
+    totalPending: 0,
     org: Organization(name: '', pending: 0, monthly: 0, oID: ''),
   ).obs;
   static Rx<FirebaseUser> get loggedInUser => _loggedInUser;
