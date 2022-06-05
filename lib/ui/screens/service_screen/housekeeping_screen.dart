@@ -1,10 +1,12 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:finsem_client/controller/api_helper.dart';
-import 'package:finsem_client/dummy_data/dummy_data.dart';
+//import 'package:finsem_client/dummy_data/dummy_data.dart';
 import 'package:finsem_client/model/housekeeping_model.dart';
 import 'package:finsem_client/ui/component/curved_appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:finsem_client/controller/api.dart';
 
 class CookScreen extends StatefulWidget {
   const CookScreen({Key? key}) : super(key: key);
@@ -19,16 +21,18 @@ class _CookScreenState extends State<CookScreen> {
     return CurvedAppBar(
       title: 'House Keeping',
       isBack: true,
-      child: FutureBuilder<List<HouseKeeping>>(
-          future: ApiHelper.fetchHousekeeping(),
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
+      child: FutureBuilder<List<DocumentSnapshot<Map<String, dynamic>>>>(
+          //HouseKeeping
+          //<List<DocumentSnapshot<Map<String, dynamic>>>>
+          future: Api.fetchHouseKeeping(),
+          builder: (context, snap) {
+            if (snap.connectionState == ConnectionState.waiting) {
               return const Center(
                 child: CircularProgressIndicator(),
               );
             }
             return ListView.builder(
-                itemCount: DummyData().houseKeeping.length,
+                itemCount: snap.data!.length,
                 itemBuilder: (context, ind) {
                   return Padding(
                     padding: const EdgeInsets.symmetric(
@@ -40,7 +44,7 @@ class _CookScreenState extends State<CookScreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              '${DummyData().houseKeeping[ind].name}  (${DummyData().houseKeeping[ind].hkType.name})',
+                              '${snap.data![ind].data()!['name']}  (${snap.data![ind].data()!['serviceType']})',
                               style: GoogleFonts.montserrat(
                                 fontWeight: FontWeight.w500,
                                 fontSize: 16,
@@ -52,7 +56,7 @@ class _CookScreenState extends State<CookScreen> {
                             SizedBox(
                               width: 260,
                               child: Text(
-                                DummyData().houseKeeping[ind].desc,
+                                snap.data![ind].data()!['serviceDescription'],
                                 maxLines: 2,
                                 overflow: TextOverflow.ellipsis,
                               ),
@@ -62,7 +66,7 @@ class _CookScreenState extends State<CookScreen> {
                         IconButton(
                           onPressed: () {
                             makeCall(
-                                mobileNo: DummyData().houseKeeping[ind].mobile);
+                                mobileNo: snap.data![ind].data()!['mobile']);
                           },
                           icon: const Icon(
                             Icons.phone_forwarded,

@@ -23,7 +23,7 @@ class Api {
     var noticeSnap = await _db
         .collection('Organizations')
         .doc('tw2TPyM4WQgbLJ3w4hxAfGnc9JE2')
-        .collection('Events')
+        .collection('Notices')
         .get();
     noticeSnap.docs;
     return noticeSnap.docs;
@@ -34,10 +34,18 @@ class Api {
     var hkSnap = await _db
         .collection('Organizations')
         .doc('tw2TPyM4WQgbLJ3w4hxAfGnc9JE2')
-        .collection('Cook')
+        .collection('Housekeeping')
         .get();
-    hkSnap.docs;
     return hkSnap.docs;
+  }
+
+  static Stream<QuerySnapshot<Map<String, dynamic>>> fetchServices() {
+    var serviceSnap = _db
+        .collection('Organizations')
+        .doc('tw2TPyM4WQgbLJ3w4hxAfGnc9JE2')
+        .collection('Services')
+        .snapshots();
+    return serviceSnap;
   }
 
   static Future<DocumentSnapshot<Map<String, dynamic>>> fetchUser(

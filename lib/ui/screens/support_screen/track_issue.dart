@@ -44,16 +44,7 @@ class _TrackIssuesState extends State<TrackIssues> {
                             padding: const EdgeInsets.symmetric(
                                 horizontal: 8.0, vertical: 5.0),
                             child: GestureDetector(
-                              onTap: () {
-                                // Navigator.push(
-                                //   context,
-                                //   MaterialPageRoute(
-                                //     builder: (context) => ViewTicketScreen(
-                                //       ticketID: index,
-                                //     ),
-                                //   ),
-                                // );
-                              },
+                              onTap: () {},
                               child: Material(
                                 borderRadius: BorderRadius.circular(15),
                                 elevation: 2,

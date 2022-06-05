@@ -288,9 +288,11 @@ class _HomeScreenState extends State<HomeScreen> {
                                               overflow: TextOverflow.ellipsis,
                                             ),
                                             Text(
-                                              DummyData()
-                                                  .events[index]
-                                                  .description,
+                                              snap.data![index].data()!['desc'],
+                                              // DummyData()
+                                              //     .events[index]
+                                              //     .description,
+
                                               style: GoogleFonts.roboto(
                                                 color: Colors.grey.shade800,
                                                 fontSize: 13.0,
@@ -311,9 +313,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                                   width: 5,
                                                 ),
                                                 Text(
-                                                  DummyData()
-                                                      .events[index]
-                                                      .location,
+                                                  snap.data![index]
+                                                      .data()!['location'],
                                                   style: GoogleFonts.poppins(
                                                     color: FinColours.grey,
                                                     fontSize: 12,
@@ -330,16 +331,14 @@ class _HomeScreenState extends State<HomeScreen> {
                                                       .spaceBetween,
                                               children: [
                                                 Text(
-                                                  DummyData()
-                                                      .events[index]
-                                                      .date,
+                                                  "${snap.data![index].data()!['date']}",
+                                                  //  ${snap.data![index].data()!['Time']}
                                                   style: GoogleFonts.poppins(
                                                     fontSize: 10,
                                                   ),
                                                 ),
-                                                DummyData()
-                                                        .events[index]
-                                                        .donation
+                                                snap.data![index]
+                                                        .data()!['donation']
                                                     ? GestureDetector(
                                                         onTap: () {
                                                           Navigator.push(
@@ -427,91 +426,104 @@ class _HomeScreenState extends State<HomeScreen> {
                     ],
                   ),
                 ),
-                CarouselSlider.builder(
-                  itemCount: DummyData().notice.length,
-                  options: CarouselOptions(
-                    aspectRatio: 5.5 / 3,
-                    viewportFraction: 0.8.h,
-                    autoPlayAnimationDuration: const Duration(seconds: 3),
+                FutureBuilder<List<DocumentSnapshot<Map<String, dynamic>>>>(
+                    future: Api.fetchNotices(),
+                    builder: (context, snap) {
+                      if (snap.connectionState == ConnectionState.waiting) {
+                        return const Center(
+                          child: CircularProgressIndicator(),
+                        );
+                      }
+                      return CarouselSlider.builder(
+                        itemCount: snap.data!.length,
+                        options: CarouselOptions(
+                          aspectRatio: 5.5 / 3,
+                          viewportFraction: 0.8.h,
+                          autoPlayAnimationDuration: const Duration(seconds: 3),
 
-                    //autoPlayInterval = Duration(seconds: 4),
-                    // enlargeCenterPage: true,
-                    autoPlay: true,
-                  ),
-                  itemBuilder: (ctx, index, realIdx) {
-                    return GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>
-                                    NoticeView(selectedNotice: index)));
-                      },
-                      child: Padding(
-                        padding:
-                            const EdgeInsets.only(bottom: 7.0, right: 10.0),
-                        child: Material(
-                          borderRadius: BorderRadius.circular(10),
-                          elevation: 5,
-                          child: Container(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 5, vertical: 5),
-                            child: Row(
-                              children: [
-                                Container(
-                                  height: 150.h,
-                                  width: 100.h,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10),
-                                      image: DecorationImage(
-                                        image: AssetImage(DummyData()
-                                            .notice[index]
-                                            .imageLink),
-                                        fit: BoxFit.fill,
-                                      )),
-                                ),
-                                const SizedBox(width: 8),
-                                SizedBox(
-                                  width: 160.w,
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                          //autoPlayInterval = Duration(seconds: 4),
+                          // enlargeCenterPage: true,
+                          autoPlay: true,
+                        ),
+                        itemBuilder: (ctx, index, realIdx) {
+                          return GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          NoticeView(selectedNotice: index)));
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.only(
+                                  bottom: 7.0, right: 10.0),
+                              child: Material(
+                                borderRadius: BorderRadius.circular(10),
+                                elevation: 5,
+                                child: Container(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 5, vertical: 5),
+                                  child: Row(
                                     children: [
-                                      const SizedBox(
-                                        height: 10,
+                                      Container(
+                                        height: 150.h,
+                                        width: 100.h,
+                                        decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                            image: DecorationImage(
+                                              image: NetworkImage(snap
+                                                  .data![index]
+                                                  .data()!['imageLink']),
+                                              fit: BoxFit.fill,
+                                            )),
                                       ),
-                                      Text(
-                                        DummyData().notice[index].title,
-                                        style: GoogleFonts.poppins(
-                                          color: FinColours.secondaryTextColor,
-                                          fontSize: 14.0,
-                                          fontWeight: FontWeight.w700,
+                                      const SizedBox(width: 8),
+                                      SizedBox(
+                                        width: 160.w,
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            const SizedBox(
+                                              height: 10,
+                                            ),
+                                            Text(
+                                              snap.data![index]
+                                                  .data()!['title'],
+                                              style: GoogleFonts.poppins(
+                                                color: FinColours
+                                                    .secondaryTextColor,
+                                                fontSize: 14.0,
+                                                fontWeight: FontWeight.w700,
+                                              ),
+                                              maxLines: 2,
+                                              overflow: TextOverflow.ellipsis,
+                                            ),
+                                            Text(
+                                              snap.data![index].data()!['desc'],
+                                              style: GoogleFonts.roboto(
+                                                color: Colors.grey.shade800,
+                                                fontSize: 13.0,
+                                                fontWeight: FontWeight.w400,
+                                              ),
+                                              maxLines: 8,
+                                              overflow: TextOverflow.ellipsis,
+                                            ),
+                                          ],
                                         ),
-                                        maxLines: 2,
-                                        overflow: TextOverflow.ellipsis,
-                                      ),
-                                      Text(
-                                        DummyData().notice[index].description,
-                                        style: GoogleFonts.roboto(
-                                          color: Colors.grey.shade800,
-                                          fontSize: 13.0,
-                                          fontWeight: FontWeight.w400,
-                                        ),
-                                        maxLines: 8,
-                                        overflow: TextOverflow.ellipsis,
                                       ),
                                     ],
                                   ),
                                 ),
-                              ],
+                              ),
                             ),
-                          ),
-                        ),
-                      ),
-                    );
-                  },
-                ),
+                          );
+                        },
+                      );
+                    }),
                 const SizedBox(height: 20),
               ],
             ),
