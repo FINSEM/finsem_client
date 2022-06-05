@@ -4,14 +4,21 @@ import 'package:finsem_client/controller/api_helper.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'dart:developer' as debug;
 import 'package:path/path.dart' as path;
+import 'dart:math';
 
 class Api {
   static final FirebaseFirestore _db = FirebaseFirestore.instance;
+  static Future<DocumentSnapshot<Map<String, dynamic>>> fetchUser(
+      String uid) async {
+    var userSnap = await _db.collection('Users').doc(uid).get();
+    return userSnap;
+  }
+
   static Future<List<DocumentSnapshot<Map<String, dynamic>>>>
       fetchEvents() async {
     var eventsSnap = await _db
         .collection('Organizations')
-        .doc('tw2TPyM4WQgbLJ3w4hxAfGnc9JE2')
+        .doc(ApiHelper.loggedInUser.value.org.oID)
         .collection('Events')
         .get();
     eventsSnap.docs;
@@ -19,10 +26,22 @@ class Api {
   }
 
   static Future<List<DocumentSnapshot<Map<String, dynamic>>>>
+      fetchDonation() async {
+    var donationsSnap = await _db
+        .collection('Organizations')
+        .doc(ApiHelper.loggedInUser.value.org.oID)
+        .collection('Events')
+        .where('donation', isEqualTo: true)
+        .get();
+    donationsSnap.docs;
+    return donationsSnap.docs;
+  }
+
+  static Future<List<DocumentSnapshot<Map<String, dynamic>>>>
       fetchNotices() async {
     var noticeSnap = await _db
         .collection('Organizations')
-        .doc('tw2TPyM4WQgbLJ3w4hxAfGnc9JE2')
+        .doc(ApiHelper.loggedInUser.value.org.oID)
         .collection('Events')
         .get();
     noticeSnap.docs;
@@ -33,17 +52,11 @@ class Api {
       fetchHouseKeeping() async {
     var hkSnap = await _db
         .collection('Organizations')
-        .doc('tw2TPyM4WQgbLJ3w4hxAfGnc9JE2')
+        .doc(ApiHelper.loggedInUser.value.org.oID)
         .collection('Cook')
         .get();
     hkSnap.docs;
     return hkSnap.docs;
-  }
-
-  static Future<DocumentSnapshot<Map<String, dynamic>>> fetchUser(
-      String uid) async {
-    var userSnap = await _db.collection('Users').doc(uid).get();
-    return userSnap;
   }
 
   static Future<String> uploadImageToFirebase(File image) async {
@@ -58,6 +71,7 @@ class Api {
   }
 
   static Future uploadIssue(String issueType, String desc, File image) async {
+    Random _random = Random();
     final uploadedImageURL = await uploadImageToFirebase(image);
     DocumentReference dr =
         FirebaseFirestore.instance.collection('Issues').doc();
@@ -66,14 +80,32 @@ class Api {
     //   'feed_image_url': uploadedImageURL,
     // });
     await dr.set({
-      "orgUid": "tw2TPyM4WQgbLJ3w4hxAfGnc9JE2",
+      "orgUid": ApiHelper.loggedInUser.value.org.oID,
       "userUid": ApiHelper.loggedInUser.value.uid,
       "tBlockRoom": ApiHelper.loggedInUser.value.add,
       "tType": issueType,
       "tDesc": desc,
       "tImg": uploadedImageURL,
       "tstatus": "Under proccess",
-      "tID": "TK48154",
+      "tID": "TK${_random.nextInt(10000)}",
+      "creationTime": DateTime.now().millisecondsSinceEpoch,
+    });
+  }
+
+  static Future uploadTxn(String paymentType, String desc, num amount) async {
+    Random _random = Random();
+    DocumentReference dr =
+        FirebaseFirestore.instance.collection('Transaction').doc();
+
+    await dr.set({
+      "orgUid": ApiHelper.loggedInUser.value.org.oID,
+      "userUid": ApiHelper.loggedInUser.value.uid,
+      "tBlockRoom": ApiHelper.loggedInUser.value.add,
+      "pType": paymentType,
+      "amount": amount,
+      "tDesc": desc,
+      "time": DateTime.now().millisecondsSinceEpoch,
+      "tID": "TNX${_random.nextInt(1000000000)}",
     });
   }
 }

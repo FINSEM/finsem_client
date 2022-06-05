@@ -189,7 +189,8 @@ class EventView extends StatelessWidget {
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) =>
-                                                const TxnScreen()));
+                                                const TxnScreen(
+                                                    isDonation: true)));
                                   },
                                   child: Container(
                                     height: 40,

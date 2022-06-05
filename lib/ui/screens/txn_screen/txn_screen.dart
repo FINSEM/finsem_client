@@ -1,3 +1,4 @@
+import 'package:finsem_client/controller/api.dart';
 import 'package:finsem_client/controller/txn/txn_controller.dart';
 import 'package:finsem_client/ui/component/curved_appbar.dart';
 import 'package:finsem_client/ui/screens/txn_screen/txn_success.dart';
@@ -7,7 +8,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
 
 class TxnScreen extends StatefulWidget {
-  const TxnScreen({Key? key}) : super(key: key);
+  final bool isDonation;
+  const TxnScreen({required this.isDonation, Key? key}) : super(key: key);
 
   @override
   State<TxnScreen> createState() => _TxnScreenState();
@@ -39,6 +41,8 @@ class _TxnScreenState extends State<TxnScreen> {
   }
 
   void _handlePaymentSuccess(PaymentSuccessResponse response) {
+    Api.uploadTxn(widget.isDonation ? 'Transaction' : 'Donation',
+        _mssgController!.text, int.parse(_amountController!.text));
     Navigator.pop(context);
     Navigator.push(context,
         MaterialPageRoute(builder: (context) => const TxnSuccessScreen()));

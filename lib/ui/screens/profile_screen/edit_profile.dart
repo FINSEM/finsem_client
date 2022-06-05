@@ -69,7 +69,7 @@ class _EditProfileState extends State<EditProfile> {
                 controller: _bioController,
                 decoration: InputDecoration(
                   labelText: 'Bio',
-                  hintText: 'faiz',
+                  hintText: 'Bio',
                   floatingLabelBehavior: FloatingLabelBehavior.always,
                   disabledBorder: inputDecoration(),
                   enabledBorder: inputDecoration(),

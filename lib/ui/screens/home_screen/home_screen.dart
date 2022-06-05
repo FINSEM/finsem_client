@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:finsem_client/controller/api.dart';
+import 'package:finsem_client/controller/api_helper.dart';
 import 'package:finsem_client/dummy_data/dummy_data.dart';
 import 'package:finsem_client/ui/screens/home_screen/event_view.dart';
 import 'package:finsem_client/ui/screens/home_screen/notice_view.dart';
@@ -9,6 +10,7 @@ import 'package:finsem_client/utils/colours.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -183,7 +185,8 @@ class _HomeScreenState extends State<HomeScreen> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => const TxnScreen()));
+                                  builder: (context) =>
+                                      const TxnScreen(isDonation: false)));
                         },
                       ),
                     ],
@@ -217,190 +220,210 @@ class _HomeScreenState extends State<HomeScreen> {
                     ],
                   ),
                 ),
-                FutureBuilder<List<DocumentSnapshot<Map<String, dynamic>>>>(
-                    future: Api.fetchEvents(),
-                    builder: (context, snap) {
-                      if (snap.connectionState == ConnectionState.waiting) {
-                        return const Center(
-                          child: CircularProgressIndicator(),
-                        );
-                      }
-                      return CarouselSlider.builder(
-                        itemCount: snap.data!.length,
-                        options: CarouselOptions(
-                          aspectRatio: 16 / 6.5,
-                          viewportFraction: 0.8.h,
-                          // enlargeCenterPage: true,
-                          autoPlay: true,
-                        ),
-                        itemBuilder: (ctx, index, realIdx) {
-                          return GestureDetector(
-                            onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          EventView(selectedEvent: index)));
-                            },
-                            child: Padding(
-                              padding: const EdgeInsets.only(
-                                  bottom: 7.0, right: 10.0),
-                              child: Material(
-                                borderRadius: BorderRadius.circular(10),
-                                elevation: 5,
-                                child: Container(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 15, vertical: 15),
-                                  child: Row(
-                                    children: [
-                                      Container(
-                                        height: 80.h,
-                                        width: 85.h,
-                                        decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(10),
-                                            image: DecorationImage(
-                                              image: NetworkImage(snap
-                                                  .data![index]
-                                                  .data()!['imgUrl']),
-                                              fit: BoxFit.fill,
-                                            )),
-                                      ),
-                                      const SizedBox(width: 15),
-                                      SizedBox(
-                                        width: 160.w,
-                                        child: Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceEvenly,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
+                Obx(
+                  () => ApiHelper.loggedInUser.value.org.oID != ""
+                      ? FutureBuilder<
+                              List<DocumentSnapshot<Map<String, dynamic>>>>(
+                          future: Api.fetchEvents(),
+                          builder: (context, snap) {
+                            if (snap.connectionState ==
+                                ConnectionState.waiting) {
+                              return const Center(
+                                child: CircularProgressIndicator(),
+                              );
+                            }
+                            return CarouselSlider.builder(
+                              itemCount: snap.data!.length,
+                              options: CarouselOptions(
+                                aspectRatio: 16 / 6.5,
+                                viewportFraction: 0.8.h,
+                                // enlargeCenterPage: true,
+                                autoPlay: true,
+                              ),
+                              itemBuilder: (ctx, index, realIdx) {
+                                return GestureDetector(
+                                  onTap: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => EventView(
+                                                selectedEvent: index)));
+                                  },
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(
+                                        bottom: 7.0, right: 10.0),
+                                    child: Material(
+                                      borderRadius: BorderRadius.circular(10),
+                                      elevation: 5,
+                                      child: Container(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 15, vertical: 15),
+                                        child: Row(
                                           children: [
-                                            Text(
-                                              snap.data![index]
-                                                  .data()!['title'],
-                                              style: GoogleFonts.poppins(
-                                                color: FinColours
-                                                    .secondaryTextColor,
-                                                fontSize: 16.0,
-                                                fontWeight: FontWeight.w700,
-                                              ),
-                                              maxLines: 1,
-                                              overflow: TextOverflow.ellipsis,
+                                            Container(
+                                              height: 80.h,
+                                              width: 85.h,
+                                              decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(10),
+                                                  image: DecorationImage(
+                                                    image: NetworkImage(snap
+                                                        .data![index]
+                                                        .data()!['imgUrl']),
+                                                    fit: BoxFit.fill,
+                                                  )),
                                             ),
-                                            Text(
-                                              DummyData()
-                                                  .events[index]
-                                                  .description,
-                                              style: GoogleFonts.roboto(
-                                                color: Colors.grey.shade800,
-                                                fontSize: 13.0,
-                                                fontWeight: FontWeight.w400,
-                                              ),
-                                              maxLines: 2,
-                                              overflow: TextOverflow.ellipsis,
-                                            ),
-                                            const SizedBox(height: 3),
-                                            Row(
-                                              children: [
-                                                const Icon(
-                                                  LineIcons.mapMarker,
-                                                  color: Color(0xffe77c42),
-                                                  size: 16,
-                                                ),
-                                                const SizedBox(
-                                                  width: 5,
-                                                ),
-                                                Text(
-                                                  DummyData()
-                                                      .events[index]
-                                                      .location,
-                                                  style: GoogleFonts.poppins(
-                                                    color: FinColours.grey,
-                                                    fontSize: 12,
-                                                    fontWeight: FontWeight.w600,
+                                            const SizedBox(width: 15),
+                                            SizedBox(
+                                              width: 160.w,
+                                              child: Column(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceEvenly,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Text(
+                                                    snap.data![index]
+                                                        .data()!['title'],
+                                                    style: GoogleFonts.poppins(
+                                                      color: FinColours
+                                                          .secondaryTextColor,
+                                                      fontSize: 16.0,
+                                                      fontWeight:
+                                                          FontWeight.w700,
+                                                    ),
+                                                    maxLines: 1,
+                                                    overflow:
+                                                        TextOverflow.ellipsis,
                                                   ),
-                                                  overflow:
-                                                      TextOverflow.ellipsis,
-                                                )
-                                              ],
-                                            ),
-                                            Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              children: [
-                                                Text(
-                                                  DummyData()
-                                                      .events[index]
-                                                      .date,
-                                                  style: GoogleFonts.poppins(
-                                                    fontSize: 10,
-                                                  ),
-                                                ),
-                                                DummyData()
+                                                  Text(
+                                                    DummyData()
                                                         .events[index]
-                                                        .donation
-                                                    ? GestureDetector(
-                                                        onTap: () {
-                                                          Navigator.push(
-                                                              context,
-                                                              MaterialPageRoute(
-                                                                  builder:
-                                                                      (context) =>
-                                                                          const TxnScreen()));
-                                                        },
-                                                        child: Container(
-                                                          height: 20,
-                                                          width: 70,
-                                                          decoration:
-                                                              BoxDecoration(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        20),
-                                                            gradient:
-                                                                const LinearGradient(
-                                                              colors: [
-                                                                Color(
-                                                                    0xFFE9573A),
-                                                                Color(
-                                                                    0xFFFDC424),
-                                                              ],
-                                                              begin: Alignment
-                                                                  .centerLeft,
-                                                              end: Alignment
-                                                                  .centerRight,
-                                                            ),
-                                                          ),
-                                                          child: Center(
-                                                            child: Text(
-                                                              "Donate",
-                                                              style: GoogleFonts
-                                                                  .poppins(
-                                                                fontSize: 10,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w700,
-                                                              ),
-                                                            ),
-                                                          ),
+                                                        .description,
+                                                    style: GoogleFonts.roboto(
+                                                      color:
+                                                          Colors.grey.shade800,
+                                                      fontSize: 13.0,
+                                                      fontWeight:
+                                                          FontWeight.w400,
+                                                    ),
+                                                    maxLines: 2,
+                                                    overflow:
+                                                        TextOverflow.ellipsis,
+                                                  ),
+                                                  const SizedBox(height: 3),
+                                                  Row(
+                                                    children: [
+                                                      const Icon(
+                                                        LineIcons.mapMarker,
+                                                        color:
+                                                            Color(0xffe77c42),
+                                                        size: 16,
+                                                      ),
+                                                      const SizedBox(
+                                                        width: 5,
+                                                      ),
+                                                      Text(
+                                                        DummyData()
+                                                            .events[index]
+                                                            .location,
+                                                        style:
+                                                            GoogleFonts.poppins(
+                                                          color:
+                                                              FinColours.grey,
+                                                          fontSize: 12,
+                                                          fontWeight:
+                                                              FontWeight.w600,
                                                         ),
+                                                        overflow: TextOverflow
+                                                            .ellipsis,
                                                       )
-                                                    : Container(),
-                                              ],
+                                                    ],
+                                                  ),
+                                                  Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
+                                                    children: [
+                                                      Text(
+                                                        DummyData()
+                                                            .events[index]
+                                                            .date,
+                                                        style:
+                                                            GoogleFonts.poppins(
+                                                          fontSize: 10,
+                                                        ),
+                                                      ),
+                                                      DummyData()
+                                                              .events[index]
+                                                              .donation
+                                                          ? GestureDetector(
+                                                              onTap: () {
+                                                                Navigator.push(
+                                                                    context,
+                                                                    MaterialPageRoute(
+                                                                        builder:
+                                                                            (context) =>
+                                                                                const TxnScreen(isDonation: true)));
+                                                              },
+                                                              child: Container(
+                                                                height: 20,
+                                                                width: 70,
+                                                                decoration:
+                                                                    BoxDecoration(
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              20),
+                                                                  gradient:
+                                                                      const LinearGradient(
+                                                                    colors: [
+                                                                      Color(
+                                                                          0xFFE9573A),
+                                                                      Color(
+                                                                          0xFFFDC424),
+                                                                    ],
+                                                                    begin: Alignment
+                                                                        .centerLeft,
+                                                                    end: Alignment
+                                                                        .centerRight,
+                                                                  ),
+                                                                ),
+                                                                child: Center(
+                                                                  child: Text(
+                                                                    "Donate",
+                                                                    style: GoogleFonts
+                                                                        .poppins(
+                                                                      fontSize:
+                                                                          10,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w700,
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            )
+                                                          : Container(),
+                                                    ],
+                                                  ),
+                                                ],
+                                              ),
                                             ),
                                           ],
                                         ),
                                       ),
-                                    ],
+                                    ),
                                   ),
-                                ),
-                              ),
-                            ),
-                          );
-                        },
-                      );
-                    }),
+                                );
+                              },
+                            );
+                          })
+                      : const Center(
+                          child: CircularProgressIndicator(color: Colors.black),
+                        ),
+                ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 10),
                   child: Row(
