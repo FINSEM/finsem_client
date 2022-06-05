@@ -165,6 +165,8 @@ class _DonationScreenState extends State<DonationScreen> {
                                                         fontWeight:
                                                             FontWeight.w700,
                                                       ),
+                                                      overflow:
+                                                          TextOverflow.ellipsis,
                                                     ),
                                                   ),
                                                 ),

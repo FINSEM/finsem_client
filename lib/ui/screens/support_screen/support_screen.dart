@@ -1,6 +1,7 @@
 import 'package:finsem_client/ui/component/curved_appbar.dart';
 import 'package:finsem_client/ui/screens/service_screen/housekeeping_screen.dart';
 import 'package:finsem_client/ui/screens/support_screen/report_issue.dart';
+import 'package:finsem_client/ui/screens/service_screen/services.dart';
 import 'package:finsem_client/ui/screens/support_screen/track_issue.dart';
 import 'package:finsem_client/utils/colours.dart';
 import 'package:flutter/material.dart';
@@ -148,7 +149,7 @@ class _SupportScreenState extends State<SupportScreen> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const CookScreen()));
+                              builder: (context) => const ServicesScreen()));
                     },
                     child: SizedBox(
                       width: 320.w,
