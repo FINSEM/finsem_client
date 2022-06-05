@@ -127,4 +127,12 @@ class Api {
     usersnap.reference.update(
         {'total_pending': ApiHelper.loggedInUser.value.totalPending - amount});
   }
+
+  static Stream<QuerySnapshot<Map<String, dynamic>>> fetchPayments() {
+    var ticketSnap = _db
+        .collection('Transactions')
+        .where('userUid', isEqualTo: ApiHelper.loggedInUser.value.uid)
+        .snapshots();
+    return ticketSnap;
+  }
 }
