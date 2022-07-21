@@ -94,7 +94,7 @@ class Api {
       "tType": issueType,
       "tDesc": desc,
       "tImg": uploadedImageURL,
-      "tstatus": "Under proccess",
+      "tstatus": "Recieved",
       "tID": "TK${_random.nextInt(10000)}",
       "creationTime": DateTime.now().millisecondsSinceEpoch,
     });
